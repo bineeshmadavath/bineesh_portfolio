@@ -1,0 +1,37 @@
+export const resume = {
+  tagline: 'UX strategy & UI development, with AI-augmented design systems.',
+  updated: 'Updated Sep 2026',
+  stats: [ { value: '15+', label: 'Years in IT, design & front-end', tone: 'neutral' }, { value: '8+', label: 'Years leading enterprise UX for AI platforms', tone: 'neutral' }, { value: '−35%', label: 'Operational processing cost, Equifax migration', tone: 'down' }, { value: '3', label: 'Anthropic certifications', tone: 'accent' } ],
+  summary: [
+    { title: 'Enterprise UX for AI platforms', text: '15+ years in IT and 8+ years leading enterprise UX for AI-driven platforms, specialising in design systems and AI-augmented product workflows.' },
+    { title: 'AI in the workflow, not on the side', text: 'Hands-on with Claude, Gemini, MCP and Figma Make to embed AI directly into design and development workflows — backed by three Anthropic certifications.' },
+    { title: 'Design intent to shipped code', text: 'Translates Figma design systems directly into HTML, CSS, JavaScript, Angular and React, closing the gap between what was designed and what was built.' },
+  ],
+  employer: { title: 'Product Design Lead – 1, UST', dates: 'January 2013 – present · 13 years' },
+  projects: [
+    { name: 'SmartOps / SmartVision', kind: 'Intelligent document processing', dates: 'Sep 2020 – present', desc: 'UST SmartOps is an intelligent automation platform combining generative AI, human-in-the-loop processes and autonomous agents to deliver operational efficiency and cost takeout across enterprise IT systems.',
+      bullets: [ ['UX transformation', 'Re-architected the document extraction and validation interface, reducing human-in-the-loop processing time by 25% through optimised review screens and advanced filtering.'], ['Scalable design systems', 'Engineered a comprehensive component library in Figma, reducing design-to-development handoff time by 40% and ensuring 100% UI consistency across the product suite.'], ['Accessibility & UX research', 'Iterative usability testing with stakeholders, leading to a 15% increase in user task completion by aligning with WCAG 2.1 AA.'], ['Tech–design bridge', 'Direct HTML/CSS/Angular support, resolving 90% of front-end UI bugs within the sprint and improving implementation fidelity.'] ] },
+    { name: 'Equifax document migration', kind: 'Captiva → Google Document AI', dates: 'Dec 2024 – Feb 2026', desc: "Modernised Equifax's legacy Captiva document capture system within SmartOps, migrating classification and validation workflows to Google Document AI.",
+      bullets: [ ['Automated work assignment', 'Designed a single-click "Get Work" action that auto-routes documents to available HITL reviewers, eliminating manual assignment and idle time.'], ['Classification & validation UX', 'Designed the review interfaces for the new AI-driven pipeline, replacing the legacy Captiva experience.'], ['Cost impact', 'Drove a 35% reduction in operational processing cost across the project through streamlined reviewer workflows and automation.'] ] },
+    { name: 'MBO Partners Marketplace', kind: 'Talent marketplace platform', dates: 'Mar 2020 – Sep 2020', desc: 'A talent marketplace connecting Fortune 500 companies with 130,000+ vetted independent professionals across 112+ specialties.',
+      bullets: [ ['UI audit & alignment', 'Comprehensive UI audits across the platform, resolving 50+ visual discrepancies to align candidate and employer experiences with brand standards.'], ['Centralised documentation', 'A style guide and UX flow library in Whimsical, decreasing onboarding time for new developers by 30%.'] ] },
+    { name: 'Princess Cruises', kind: 'Hospitality & travel', dates: 'Jan 2013 – Mar 2020', desc: 'An award-winning cruise line providing immersive travel experiences, personalised service and entertainment across 330+ global destinations.',
+      bullets: [ ['Princess@Sea', 'Multilingual, responsive Drupal-based platform, achieving a 95% positive user-sentiment rating across guest demographics and devices.'], ['Video on Demand', 'TV-based UI built in React, improving remote-based navigation speed by 20% through simplified information architecture.'], ['Service Excellence', 'Led UX and contributed React/HTML5/SCSS front-end for a crew-facing incident management app — group assignment, categorisation and real-time tracking.'], ['Yield management system', 'Streamlined data visualisation for inventory and pricing reports, enabling pricing decisions 15% faster.'], ['Computer-based tutorials', 'Flash-animated onboarding tutorials orienting guests to the ship and voyage from the outset.'] ] },
+  ],
+  earlier: [
+    { company: 'Greencraft IT Solutions', city: 'Trivandrum, Technopark', title: 'Senior Graphic Artist', dates: 'May 2011 – Dec 2012', text: 'Directed Flash animation for films and ads; websites, branding and marketing collateral.' },
+    { company: 'Buglebees Design Studios', city: 'Trivandrum', title: 'Creative Head', dates: 'Jan 2008 – Apr 2011', text: 'Creative direction for Flash animation and brand design; print and digital collateral.' },
+    { company: 'Sherston Educational Software', city: 'Trivandrum, Technopark', title: 'Senior Artist / Animator', dates: 'Jul 2004 – Jan 2008', text: 'Flash animation, character design and UI illustration for computer-based training.' },
+    { company: 'Tekathlon Systems India', city: 'Chennai', title: 'Flash Designer / Animator', dates: 'Feb 2002 – Jun 2004', text: 'CBT modules and corporate presentations in Flash and Photoshop.' },
+    { company: 'Digi Sign Pvt. Ltd.', city: 'Calicut', title: 'Graphic Designer', dates: 'Mar 2000 – Jan 2002', text: 'Brochures, advertisements, posters and product packaging.' },
+  ],
+  expertise: [
+    ['AI ecosystem', ['Claude AI (Projects, Artifacts, Connectors)', 'Claude Design', 'Gemini', 'GitHub Copilot', 'MCP Server', 'Figma Make']],
+    ['Design', ['Figma', 'Adobe Creative Suite', 'Canva', 'InVision', 'Miro', 'FigJam', 'Whimsical']],
+    ['Development', ['HTML5', 'CSS3', 'Sass', 'JavaScript', 'Angular', 'React', 'Tailwind', 'jQuery', 'Bootstrap']],
+    ['Product management', ['Jira', 'Azure DevOps', 'Confluence']],
+    ['Industries', ['Intelligent document processing', 'Hospitality / travel', 'Recruitment / talent marketplaces']],
+  ],
+  competencies: [ ['UX strategy', 'Research, information architecture, usability testing, wireframing, rapid prototyping'], ['Product design', 'Design systems, HITL workflows, AI-augmented UX guidelines'], ['AI-augmented delivery', 'Claude, Copilot and MCP-based workflow integration'] ],
+  education: [ ['Google UX Design Professional Certificate', 'Google', 'Certification'], ['Claude Certified Developer – Foundations', 'Anthropic', 'Certification'], ['Claude Certified Associate – Foundations', 'Anthropic', 'Certification'], ['Claude Code in Action', 'Anthropic Education', 'Course'], ['Diploma in Designing and Animation', 'Domain Infotech, Manjeri', 'Diploma'], ['Diploma in Electronics Engineering', 'Govt. Polytechnic, Tirurangadi', 'Diploma'] ],
+};

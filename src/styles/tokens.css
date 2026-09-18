@@ -1,0 +1,60 @@
+/* Design tokens — light (stone / moss) and dark. One set of names, two values each. */
+:root {
+  --bg: #EDEFE8;
+  --alt: #E2E6DC;
+  --card: #FFFFFF;
+  --border: #D5DACB;
+  --border-2: #C8CEBE;
+  --dot: #CFD5C6;
+  --ink: #1B1F19;
+  --muted: #4E5549;
+  --caption: #6F776A;
+  --accent: #3F6B3A;
+  --band: #3F6B3A;
+  --band-soft: #D6E3D0;
+  --down: #B0562B;
+  --up: #2C7A62;
+  --glow: rgba(63, 107, 58, 0.20);
+  --glow-0: rgba(63, 107, 58, 0);
+  --ring: rgba(27, 31, 25, 0.14);
+  --btn-bg: #1B1F19;
+  --btn-text: #EDEFE8;
+  --portrait-blend: multiply;
+  --portrait-opacity: 0.16;
+
+  --font-display: 'Fraunces', Georgia, 'Times New Roman', serif;
+  --font-body: 'Manrope', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'DM Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --radius-sm: 4px;
+  --radius: 6px;
+  --gutter: clamp(20px, 6.6vw, 96px);
+  --section-y: clamp(56px, 9vw, 104px);
+  --section-y-sm: clamp(40px, 6vw, 88px);
+  --gap: clamp(16px, 2vw, 20px);
+  --maxw: 1440px;
+}
+
+[data-theme="dark"] {
+  --bg: #101412;
+  --alt: #161B18;
+  --card: #1C2320;
+  --border: #2A322D;
+  --border-2: #35403A;
+  --dot: #26302A;
+  --ink: #ECEFE8;
+  --muted: #B3BAB0;
+  --caption: #8B948C;
+  --accent: #8CC383;
+  --band: #2E4F2C;
+  --band-soft: #C9DCC4;
+  --down: #E08A5C;
+  --up: #5FCFA0;
+  --glow: rgba(140, 195, 131, 0.16);
+  --glow-0: rgba(140, 195, 131, 0);
+  --ring: rgba(236, 239, 232, 0.14);
+  --btn-bg: #ECEFE8;
+  --btn-text: #101412;
+  --portrait-blend: screen;
+  --portrait-opacity: 0.12;
+}
