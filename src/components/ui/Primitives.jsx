@@ -32,10 +32,10 @@ export function Button({ to, href, onClick, variant = 'primary', size = '', chil
   return <button type={type} onClick={onClick} className={cls} {...rest}>{inner}</button>;
 }
 
-export function LinkArrow({ to, href, children, className = '' }) {
+export function LinkArrow({ to, href, onClick, children, className = '' }) {
   const cls = `link-arrow ${className}`;
   if (to) return <Link to={to} className={cls}>{children}<ArrowRight /></Link>;
-  return <a href={href} className={cls}>{children}<ArrowRight /></a>;
+  return <a href={href} onClick={onClick} className={cls}>{children}<ArrowRight /></a>;
 }
 
 export function Card({ label, labelTone, title, text, children, className = '', large = false }) {

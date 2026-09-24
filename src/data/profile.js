@@ -15,8 +15,11 @@ export const profile = {
   ],
   headline: { lead: 'The designer', mid: 'who also ships', em: 'the code.' },
   heroMeta: [
-    { label: 'What I do', text: 'Enterprise UX for document processing, hospitality and marketplaces — from research through front-end delivery.' },
-    { label: 'How', text: 'Human-centred, WCAG-compliant, AI-augmented. Angular, React and design systems as the working language.' },
+    { label: 'What I do', text: [
+      "I'm a Strategic Product Design Lead with 15+ years of IT experience, including 8+ years specializing in UX/UI design for complex, enterprise-scale digital products and transformation initiatives.",
+      'I bring a unique hybrid expertise across Product Design, UI Development, and Design Systems, enabling me to bridge the gap between user needs, creative vision, business goals, and engineering execution. My work focuses on human-centered design, accessibility (WCAG), and AI-augmented design workflows.',
+      'I specialize in simplifying complex workflows and translating business challenges into intuitive, scalable, and technically sound digital products. My cross-domain experience spans Intelligent Document Processing (IDP), Healthcare, Enterprise Applications, Hospitality, Marketplace Platforms, and other digital transformation initiatives.',
+    ] },
   ],
   stats: [
     { value: '15+', label: 'Years, design & front-end', tone: 'neutral' },

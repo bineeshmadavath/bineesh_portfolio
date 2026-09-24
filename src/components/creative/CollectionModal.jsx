@@ -1,19 +1,28 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Close } from '../ui/Icons';
 import { Label } from '../ui/Primitives';
 
-/** Lightweight gallery modal: traps focus, closes on Esc/backdrop. Items are placeholders until real artwork is added. */
 export default function CollectionModal({ collection, onClose }) {
   const closeRef = useRef(null);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const items = collection?.gallery && collection.gallery.length ? collection.gallery : [collection?.image];
+
   useEffect(() => {
+    setActiveIndex(0);
     closeRef.current?.focus();
     const onKey = (e) => { if (e.key === 'Escape') onClose(); };
     document.addEventListener('keydown', onKey);
     const prev = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
     return () => { document.removeEventListener('keydown', onKey); document.body.style.overflow = prev; };
-  }, [onClose]);
+  }, [collection, onClose]);
+
   if (!collection) return null;
+
+  const activeItem = items[activeIndex] || collection.image;
+  const goPrev = () => setActiveIndex((prev) => (prev === 0 ? items.length - 1 : prev - 1));
+  const goNext = () => setActiveIndex((prev) => (prev === items.length - 1 ? 0 : prev + 1));
+
   return (
     <div className="modal-backdrop" onClick={onClose}>
       <div className="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" onClick={(e) => e.stopPropagation()}>
@@ -25,11 +34,40 @@ export default function CollectionModal({ collection, onClose }) {
           </div>
           <button ref={closeRef} type="button" className="icon-btn" onClick={onClose} aria-label="Close gallery"><Close /></button>
         </div>
-        <div className="modal__grid">
-          <div className="modal__tile" style={{ backgroundImage: `url(${collection.image})`, backgroundSize: 'cover', backgroundPosition: 'center' }} role="img" aria-label={`${collection.title} — sample`} />
-          {Array.from({ length: collection.items - 1 }).map((_, i) => (
-            <div key={i} className="modal__tile">[{collection.video ? 'film' : 'piece'} {String(i + 2).padStart(2, '0')}]</div>
-          ))}
+
+        <div className="modal__media">
+          <div className="modal__grid">
+            {items.map((item, index) => {
+              const thumbnail = item?.type === 'video' ? item.thumbnail : item;
+              return (
+                <button
+                  key={`${collection.id}-${index}`}
+                  type="button"
+                  className={`modal__tile ${index === activeIndex ? 'is-active' : ''}`}
+                  onClick={() => setActiveIndex(index)}
+                  aria-label={`${collection.title} — ${item?.type === 'video' ? 'video' : 'image'} ${index + 1}`}
+                >
+                  <img src={thumbnail} alt="" loading="lazy" />
+                </button>
+              );
+            })}
+          </div>
+
+          <div className="modal__viewer">
+            <button type="button" className="modal__nav modal__nav--prev" onClick={goPrev} aria-label="Previous image">‹</button>
+            {activeItem?.type === 'video' ? (
+              <iframe
+                className="modal__viewer-video"
+                src={`${activeItem.src}?autoplay=1&title=0&byline=0&portrait=0`}
+                title={activeItem.title}
+                allow="autoplay; fullscreen; picture-in-picture"
+                allowFullScreen
+              />
+            ) : (
+              <img className="modal__viewer-image" src={activeItem} alt={`${collection.title} — selected piece`} />
+            )}
+            <button type="button" className="modal__nav modal__nav--next" onClick={goNext} aria-label="Next image">›</button>
+          </div>
         </div>
       </div>
     </div>

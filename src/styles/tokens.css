@@ -20,7 +20,7 @@
   --btn-bg: #1B1F19;
   --btn-text: #EDEFE8;
   --portrait-blend: multiply;
-  --portrait-opacity: 0.16;
+  --portrait-opacity: 1;
 
   --font-display: 'Fraunces', Georgia, 'Times New Roman', serif;
   --font-body: 'Manrope', system-ui, -apple-system, 'Segoe UI', sans-serif;
@@ -56,5 +56,5 @@
   --btn-bg: #ECEFE8;
   --btn-text: #101412;
   --portrait-blend: screen;
-  --portrait-opacity: 0.12;
+  --portrait-opacity: 1;
 }
