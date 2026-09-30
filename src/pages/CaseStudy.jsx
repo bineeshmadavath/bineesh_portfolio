@@ -8,9 +8,10 @@ import Band from '../components/layout/Band';
 import { Button } from '../components/ui/Primitives';
 import { useDocumentTitle } from '../hooks/useDocumentTitle';
 
-export default function CaseStudy() {
+export default function CaseStudy({ slugOverride }) {
   const { slug } = useParams();
-  const c = getCaseStudy(slug);
+  const finalSlug = slugOverride ?? slug;
+  const c = getCaseStudy(finalSlug);
   useDocumentTitle(c ? `${c.title} — case study` : 'Not found');
   if (!c) return <Navigate to="/" replace />;
   const next = getCaseStudy(c.next);
@@ -19,8 +20,11 @@ export default function CaseStudy() {
       <CaseHero hero={c.hero} />
       <Glance glance={c.glance} />
       {c.sections.map((s, i) => <CaseSection key={i} section={s} />)}
-      <Band eyebrow="What this taught me" title={<>{c.takeaway.text}<em style={{ fontStyle: 'italic' }}>{c.takeaway.em}</em></>}
-        next={next && { to: `/work/${next.slug}`, label: `Next case study · ${next.number}`, title: `${next.title} — ${next.category.toLowerCase()}` }}>
+      <Band
+        eyebrow="What this taught me"
+        title={<>{c.takeaway.text}<em style={{ fontStyle: 'italic' }}>{c.takeaway.em}</em></>}
+        next={next && { to: next.href || `/work/${next.slug}`, label: `Next case study · ${next.number}`, title: `${next.title} — ${next.category.toLowerCase()}` }}
+      >
         <Button href={`mailto:${profile.email}`} variant="on-band">{c.takeaway.cta}</Button>
       </Band>
     </article>

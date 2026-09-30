@@ -57,9 +57,7 @@ export function SplitImages({ s }) {
             </Stack>
           );
           const img = <Frame image={p.image} label={p.imageLabel} height={420} />;
-          return p.imageSide === 'left'
-            ? <div key={p.title} className="split split--8-4">{img}{text}</div>
-            : <div key={p.title} className="split split--4-8">{text}{img}</div>;
+          return <div key={p.title} className="split split--4-8">{text}{img}</div>;
         })}
       </Stack>
     </Section>
@@ -139,22 +137,37 @@ export function Research({ s }) {
 
 export function Persona({ s }) {
   const p = s.persona;
+  const isArrayGoals = Array.isArray(s.goals);
+  const isArrayFrustrations = Array.isArray(s.frustrations);
   return (
     <Section alt size="sm">
       <Stack gap={40}>
-        <SectionHead eyebrow={s.eyebrow} title={s.title} text={s.text} />
-        <Tags items={s.pains} />
+        {(s.eyebrow || s.title) && <Stack gap={14}>{s.eyebrow && <Eyebrow>{s.eyebrow}</Eyebrow>}{s.title && <h2>{s.title}</h2>}</Stack>}
         <div className="split">
           <div className="card card--alt" style={{ padding: 32 }}>
-            <Label>Primary persona</Label>
             <div style={{ fontFamily: 'var(--font-display)', fontSize: '2.125rem', fontWeight: 600, lineHeight: 1.05 }}>{p.name}</div>
             <div className="body body--sm">{p.role}</div>
-            <div className="stack" style={{ '--stack-gap': '10px', paddingTop: 10, borderTop: '1px solid var(--border)', fontSize: '.875rem' }}>
-              <div><span style={{ color: 'var(--caption)' }}>Goals — </span>{p.goals}</div>
-              <div><span style={{ color: 'var(--caption)' }}>Frustrations — </span>{p.frustrations}</div>
-            </div>
+            {p.location && <div className="body body--sm" style={{ fontSize: '.875rem', color: 'var(--caption)', paddingTop: 8 }}>📍 {p.location}</div>}
+            {p.quote && <blockquote className="quote" style={{ margin: '16px 0 0 0', paddingTop: 16, borderTop: '1px solid var(--border)' }}>"{p.quote}"</blockquote>}
           </div>
-          <div className="card" style={{ padding: 32 }}><Label>Scenario</Label><p style={{ lineHeight: 1.65 }}>{s.scenario}</p></div>
+          <div className="stack" style={{ '--stack-gap': '32px' }}>
+            {s.goals && (
+              <div className="card" style={{ padding: 24, gap: 12 }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}><span style={{ width: 24, height: 24, borderRadius: '50%', background: 'var(--accent)', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '.875rem', fontWeight: 600 }}>✓</span><h3 style={{ margin: 0, fontSize: '1.125rem' }}>Goals</h3></div>
+                <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: 8 }}>
+                  {(isArrayGoals ? s.goals : [s.goals]).map((g) => <li key={g} className="body body--sm" style={{ paddingLeft: 32, position: 'relative' }}><span style={{ position: 'absolute', left: 0, color: 'var(--accent)' }}>✓</span>{g}</li>)}
+                </ul>
+              </div>
+            )}
+            {s.frustrations && (
+              <div className="card" style={{ padding: 24, gap: 12 }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}><span style={{ width: 24, height: 24, borderRadius: '50%', background: 'var(--down)', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '.875rem', fontWeight: 600 }}>✕</span><h3 style={{ margin: 0, fontSize: '1.125rem' }}>Frustrations</h3></div>
+                <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: 8 }}>
+                  {(isArrayFrustrations ? s.frustrations : [s.frustrations]).map((f) => <li key={f} className="body body--sm" style={{ paddingLeft: 32, position: 'relative' }}><span style={{ position: 'absolute', left: 0, color: 'var(--down)' }}>✕</span>{f}</li>)}
+                </ul>
+              </div>
+            )}
+          </div>
         </div>
       </Stack>
     </Section>
@@ -198,9 +211,184 @@ export function Structure({ s }) {
             ))}
           </div>
         </div>
-        <div className="grid grid--2">
-          {s.gallery.map((g) => <Stack key={g.label} gap={14}><Label>{g.label}</Label><Frame image={g.image} label={g.imageLabel} height={g.h} /></Stack>)}
+        {s.gallery && s.gallery.length > 0 && (
+          <div className="grid grid--2">
+            {s.gallery.map((g) => <Stack key={g.label} gap={14}><Label>{g.label}</Label><Frame image={g.image} label={g.imageLabel} height={g.h} /></Stack>)}
+          </div>
+        )}
+        {s.footer && <div className="body body--sm" style={{ padding: '16px 20px', background: 'var(--alt)', borderRadius: 'var(--radius-sm)', color: 'var(--muted)' }}>{s.footer}</div>}
+      </Stack>
+    </Section>
+  );
+}
+
+export function Findings({ s }) {
+  return (
+    <Section>
+      <Stack gap={40}>
+        <SectionHead eyebrow={s.eyebrow} title={s.title} text={s.text} />
+        <div className="stack" style={{ '--stack-gap': '16px' }}>
+          {s.findings.map((f) => (
+            <div key={f.number} className="card" style={{ display: 'grid', gridTemplateColumns: '80px 1fr', gap: 24, alignItems: 'start' }}>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: 56, height: 56, borderRadius: '50%', background: 'var(--accent)', color: '#fff', fontSize: '1.25rem', fontWeight: 600 }}>{f.number}</div>
+              <div className="stack" style={{ '--stack-gap': '12px' }}>
+                <div className="stack" style={{ '--stack-gap': '4px' }}>
+                  <Label tone="down">Finding</Label>
+                  <h3 style={{ margin: 0, fontSize: '1.125rem', fontWeight: 600 }}>{f.finding}</h3>
+                </div>
+                <div className="stack" style={{ '--stack-gap': '4px', paddingTop: 8, borderTop: '1px solid var(--border)' }}>
+                  <Label tone="accent">Design Response</Label>
+                  <p className="body body--sm" style={{ margin: 0 }}>{f.response}</p>
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
+      </Stack>
+    </Section>
+  );
+}
+
+export function JourneyScreens({ s }) {
+  return (
+    <Section>
+      <Stack gap={40}>
+        <h2 style={{ margin: 0 }}>{s.title}</h2>
+        <div className="grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 24 }}>
+          {s.screens.map((screen) => (
+            <div key={screen.number} className="stack" style={{ '--stack-gap': '12px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: 36, height: 36, borderRadius: '50%', background: 'var(--accent)', color: '#fff', fontSize: '0.875rem', fontWeight: 600 }}>{screen.number}</div>
+                <h3 style={{ margin: 0, fontSize: '1rem', fontWeight: 600 }}>{screen.name}</h3>
+              </div>
+              <p className="body body--sm" style={{ margin: 0, color: 'var(--muted)' }}>{screen.description}</p>
+            </div>
+          ))}
+        </div>
+        {s.footer && <div className="body body--sm" style={{ padding: '16px 20px', background: 'var(--alt)', borderRadius: 'var(--radius-sm)', color: 'var(--muted)', marginTop: 24 }}>{s.footer}</div>}
+      </Stack>
+    </Section>
+  );
+}
+
+export function DesignSystem({ s }) {
+  const ColorGroup = ({ title, colors, note }) => (
+    <div className="stack" style={{ '--stack-gap': '16px' }}>
+      <div className="stack" style={{ '--stack-gap': '4px' }}>
+        <h3 style={{ margin: 0, fontSize: '1rem', fontWeight: 600 }}>{title}</h3>
+        {note && <p className="body body--sm" style={{ margin: 0, color: 'var(--muted)' }}>{note}</p>}
+      </div>
+      <div className="grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 16 }}>
+        {colors.map((c) => (
+          <div key={c.value} className="card" style={{ padding: 0, overflow: 'hidden' }}>
+            <div style={{ background: c.value, height: 80, width: '100%' }} />
+            <div style={{ padding: 16 }}>
+              <div style={{ fontSize: '.875rem', fontWeight: 600, marginBottom: 4 }}>{c.name}</div>
+              <div style={{ fontSize: '.75rem', color: 'var(--accent)', fontFamily: 'var(--font-mono)', marginBottom: 8 }}>{c.value}</div>
+              <div style={{ fontSize: '.75rem', color: 'var(--caption)', fontFamily: 'var(--font-mono)' }}>{c.variable}</div>
+              <div style={{ fontSize: '.8125rem', color: 'var(--muted)', marginTop: 8, paddingTop: 8, borderTop: '1px solid var(--border)' }}>{c.usage}</div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+
+  return (
+    <Section>
+      <Stack gap={48}>
+        <SectionHead eyebrow={s.eyebrow} title={s.title} text={s.text} />
+        <Stack gap={40}>
+          {s.spacing && (
+            <div className="stack" style={{ '--stack-gap': '16px' }}>
+              <h3 style={{ margin: 0 }}>Spacing</h3>
+              <div style={{ fontSize: '.75rem', color: 'var(--caption)', fontFamily: 'var(--font-mono)' }}>4px base · Tailwind scale</div>
+              <div className="stack" style={{ '--stack-gap': '8px' }}>
+                {s.spacing.map((sp) => (
+                  <div key={sp.value} style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
+                    <div style={{ width: parseInt(sp.value) * 2, height: 12, background: 'var(--accent)', borderRadius: '2px', minWidth: '4px' }} />
+                    <div style={{ minWidth: '60px', fontSize: '.875rem', fontWeight: 600 }}>{sp.value}</div>
+                    <div style={{ fontSize: '.8125rem', color: 'var(--muted)' }}>{sp.usage}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+          {s.borderRadius && (
+            <div className="stack" style={{ '--stack-gap': '16px' }}>
+              <h3 style={{ margin: 0 }}>Border radius</h3>
+              <div className="grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 16 }}>
+                {s.borderRadius.map((br) => (
+                  <div key={br.name} className="card">
+                    <div style={{ width: '100%', height: 60, background: 'var(--brand-soft)', borderRadius: br.value === 'full' ? '999px' : br.value, marginBottom: 12 }} />
+                    <div style={{ fontWeight: 600, marginBottom: 4 }}>{br.name}</div>
+                    <div style={{ fontSize: '.75rem', color: 'var(--accent)', fontFamily: 'var(--font-mono)', marginBottom: 8 }}>{br.value}</div>
+                    <div style={{ fontSize: '.75rem', color: 'var(--caption)', fontFamily: 'var(--font-mono)' }}>{br.variable}</div>
+                    <div style={{ fontSize: '.8125rem', color: 'var(--muted)', marginTop: 8, paddingTop: 8, borderTop: '1px solid var(--border)' }}>{br.usage}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+          {s.elevation && (
+            <div className="stack" style={{ '--stack-gap': '16px' }}>
+              <h3 style={{ margin: 0 }}>Elevation</h3>
+              <div style={{ fontSize: '.75rem', color: 'var(--caption)' }}>Borders first, shadows for emphasis only</div>
+              <div className="stack" style={{ '--stack-gap': '12px' }}>
+                {s.elevation.map((el) => (
+                  <div key={el.name} className="card" style={{ padding: 24, background: 'var(--brand-tint)', boxShadow: el.name === 'None (default)' ? '0 0 0 1px var(--color-line)' : el.value, border: el.name === 'None (default)' ? 'none' : undefined }}>
+                    <div style={{ fontWeight: 600, marginBottom: 4 }}>{el.name}</div>
+                    <div style={{ fontSize: '.75rem', color: 'var(--accent)', fontFamily: 'var(--font-mono)', marginBottom: 8 }}>{el.value}</div>
+                    <div style={{ fontSize: '.8125rem', color: 'var(--muted)' }}>{el.usage}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+          {s.typography && (
+            <div className="stack" style={{ '--stack-gap': '20px' }}>
+              <h3 style={{ margin: 0 }}>Typography</h3>
+              <div className="stack" style={{ '--stack-gap': '12px' }}>
+                <p className="body body--sm" style={{ margin: 0, color: 'var(--muted)' }}>{s.typography.description}</p>
+              </div>
+              <div className="stack" style={{ '--stack-gap': '8px' }}>
+                {s.typography.scales.map((scale) => (
+                  <div key={scale.name} style={{ display: 'grid', gridTemplateColumns: '120px 1fr auto', gap: 24, alignItems: 'center', paddingBottom: 12, borderBottom: '1px solid var(--border)' }}>
+                    <div>
+                      <div style={{ fontWeight: 600, marginBottom: 2 }}>{scale.name}</div>
+                      <div style={{ fontSize: '.75rem', color: 'var(--caption)', fontFamily: 'var(--font-mono)' }}>{scale.size} · {scale.weight} · h {scale.lineHeight}</div>
+                    </div>
+                    <div style={{ fontSize: scale.size.replace('px', '') > 20 ? '2rem' : '1rem', fontWeight: scale.weight, lineHeight: scale.lineHeight }}>
+                      {scale.name === 'Display' ? 'Aa' : 'The quick brown fox'}
+                    </div>
+                    <div style={{ fontSize: '.75rem', color: 'var(--caption)', fontFamily: 'var(--font-mono)', textAlign: 'right' }}>tracking {scale.tracking}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+          <div className="stack" style={{ '--stack-gap': '20px' }}>
+            <h3 style={{ margin: 0 }}>Colour palette</h3>
+            <ColorGroup title="Brand" colors={s.colors.brand} />
+            <ColorGroup title="Neutrals" colors={s.colors.neutrals} note="Ink carries a faint green undertone so text never looks pure black against the mint page." />
+            <ColorGroup title="Status" colors={s.colors.status} note="Kept deliberately muted so they never compete with the brand green." />
+            <ColorGroup title="Status tints" colors={s.colors.statusTints} note="Each status has a soft pair used behind pills and inline messages." />
+          </div>
+          {s.effects && (
+            <div className="stack" style={{ '--stack-gap': '16px' }}>
+              <h3 style={{ margin: 0 }}>Special effects</h3>
+              <div className="grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 16 }}>
+                {s.effects.map((e) => (
+                  <div key={e.name} className="card">
+                    <div style={{ fontWeight: 600, marginBottom: 8 }}>{e.name}</div>
+                    <div style={{ fontSize: '.8125rem', fontFamily: 'var(--font-mono)', color: 'var(--accent)', marginBottom: 12, padding: 8, background: 'var(--alt)', borderRadius: 'var(--radius-sm)' }}>{e.description}</div>
+                    <div style={{ fontSize: '.875rem', color: 'var(--muted)' }}>{e.usage}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+        </Stack>
       </Stack>
     </Section>
   );

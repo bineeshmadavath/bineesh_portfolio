@@ -1,3 +1,5 @@
+import { IMAGES } from '../lib/images';
+
 // Case studies are section-driven: each `sections` entry has a `type` that maps to a block component.
 // Image slots are `null` until real screenshots exist; the Frame component renders a labelled placeholder.
 export const caseStudies = [
@@ -56,7 +58,7 @@ export const caseStudies = [
           { label: 'Part 1 · Admin', title: 'DTD screen configuration', text: 'A new Inference definition sits alongside each FOI, table and clause definition. Admins write the rule in plain language, pick the evidence source, and choose whether the result is a pass/fail or a summary — no code, no redeploy.',
             points: ['FOI definition: inference explicit, on or off per field', 'Table definition: row-level rules and column context', 'Clause definition: clause-level inference in the legal flow'], image: `${import.meta.env.BASE_URL}images/Config-FOI.png`, imageLabel: 'Screenshot — DTD: FOI definition with Inference panel', imageSide: 'right' },
           { label: 'Part 2 · Reviewer', title: 'DR screen display', text: 'Inference is rendered as a secondary layer: a one-line summary under the field, expanded on demand, with the evidence highlighted in the document when opened. Extracted data keeps its position, weight and colour.',
-            points: ['Progressive disclosure — summary first, detail on expand', 'Contextual placement — inference sits under its evidence', 'Visual hierarchy — extraction first, inference second'], image: `${import.meta.env.BASE_URL}images/inf-01.png`, imageLabel: 'Screenshot — DR screen: inference collapsed vs expanded', imageSide: 'left' } ] },
+            points: ['Progressive disclosure — summary first, detail on expand', 'Contextual placement — inference sits under its evidence', 'Visual hierarchy — extraction first, inference second'], image: `${import.meta.env.BASE_URL}images/inf-01.png`, imageLabel: 'Screenshot — DR screen: inference collapsed vs expanded', imageSide: 'right' } ] },
       { type: 'tabs', eyebrow: '05 — Detailed UX', title: 'Three tabs, one inference pattern.', tabs: [
           { id: 'tables', label: 'Tables tab', title: 'Row-level inference', points: ['Anomaly detection per row', 'Exception-based review — only flagged rows expand', 'Column context carried into the inference'], image: `${import.meta.env.BASE_URL}images/inf-02.png`, imageLabel: 'Screenshot — Tables tab' },
           { id: 'fois', label: 'FOIs tab', title: 'Field-level inline inference', points: ['Rule pass / fail indicator, at-a-glance', 'One-line preview, expandable detail', 'Evidence highlighting in the document'], image: `${import.meta.env.BASE_URL}images/inf-01.png`, imageLabel: 'Screenshot — FOIs tab' },
@@ -78,35 +80,212 @@ export const caseStudies = [
     title: 'Green Eye',
     category: 'Civic tech & sustainability',
     categoryShort: 'Civic tech',
-    summary: 'Community reporting, tracking and rewards for cleaner neighbourhoods.',
+    summary: 'A community-driven web app that lets citizens report littering in seconds, follow the cleanup, earn rewards and join local drives.',
+    href: '/work/green-eye',
+    // Home-grid thumbnail mirrors the case study hero: landscape photo + phone mockup.
+    thumb: {
+      background: IMAGES.hero,
+      device: `${import.meta.env.BASE_URL}case-study/home-mobile.jpg`,
+      label: 'Green Eye home screen on mobile over a misty green landscape',
+    },
+    featuredMetrics: [
+      { value: '8', label: 'Screens redesigned', tone: 'neutral' },
+      { value: '22', label: 'Design tokens', tone: 'neutral' },
+    ],
     tags: ['Civic tech', 'Accessibility', 'React'],
     hero: {
-      eyebrow: 'Case study 02 · Green Eye · Civic tech & sustainability',
-      title: 'Reporting litter should take one tap — ', titleEm: 'and feel like it counted.',
-      lede: 'A community platform where residents report littering, track their own environmental impact and earn rewards — designed for a 16-year-old activist and a 60-year-old neighbour alike.',
-      image: `${import.meta.env.BASE_URL}images/Thumbnail-Greeneye.png`, imageLabel: 'Hero screenshot — Green Eye home + report flow',
-      meta: [ { label: 'Role', value: 'UX / Product Designer', sub: 'Research, IA, wireframes, hi-fi' }, { label: 'Tools', value: 'Figma, React', sub: 'Prototype built in React' }, { label: 'Timeline', value: '4 weeks', sub: 'Research to hi-fi + usability test' }, { label: 'Type', value: 'Civic tech / sustainability', sub: 'Mobile-first web app' } ],
+      eyebrow: 'Case study · 2025',
+      title: 'Green Eye',
+      titleEm: 'Watch. Expose. Change.',
+      lede: 'A community-driven web app that lets citizens report littering in seconds, follow the cleanup, earn rewards and join local drives. This case study covers the research, the redesign and the design system that now powers every screen.',
+      image: `${import.meta.env.BASE_URL}images/Thumbnail-Greeneye.png`, imageLabel: 'Hero screenshot — Green Eye app interface',
+      meta: [ { label: 'Role', value: 'Product design & front-end', sub: 'Research, IA, wireframes, hi-fi, design system' }, { label: 'Platform', value: 'Responsive web · mobile-first', sub: 'Progressive web app' }, { label: 'Stack', value: 'React 19 · Tailwind v4 · Firebase', sub: 'Real-time database & hosting' }, { label: 'Region', value: 'Kerala, India', sub: 'Pilot launch region' } ],
     },
-    glance: { problem: 'Residents wanted a cleaner neighbourhood but had no easy way to report, no feedback, and no reason to keep going.', solution: 'A one-tap report flow, a personal impact tracker, and rewards tied to real clean-ups — on an accessible, mobile-first app.', impact: 'Testers preferred single-tap submission, and visual feedback measurably lifted engagement in the usability round.' },
+    glance: { problem: 'Citizens lacked an easy way to report littering and see the impact of their actions.', solution: 'A one-tap report flow, real-time tracking, rewards, and community engagement — on an accessible, mobile-first app.', impact: 'Redesigned 8 screens and created 22 design tokens, enabling faster development and consistent UX.' },
     sections: [
-      { type: 'research', eyebrow: '01 — Research', title: 'Three people, one problem: no signal, no feedback, no reason.',
-        text: 'Interviews with a resident, a volunteer and a municipal officer converged on the same gap: everyone wants a cleaner street, but the tools to act are slow, opaque and unrewarding.',
-        people: [ { who: 'Sarah · local resident', quote: "I want a clean neighbourhood, but I'm too busy for formal volunteering. I never know exactly when the trash truck will arrive.", need: 'Needs: a quick alert, not a commitment' }, { who: 'David · environmental volunteer', quote: "It's hard to change people's habits when they don't know how to sort waste. Rewards or points would give my neighbours a reason.", need: 'Needs: guidance plus incentives' }, { who: 'Officer Raj · municipal staff', quote: "My priority is efficiency and city mandates, but I'm held back by outdated routes and limited data.", need: 'Needs: real-time bin data to redirect crews' } ],
-        insight: 'Residents need simple, timely notifications, clear guidance and incentives. Staff need real-time data. One platform can do both — if it stays simple on the resident side.' },
-      { type: 'persona', alt: true, eyebrow: '02 — Pain points & persona', title: 'Designing for the most motivated user — without leaving the least confident one behind.',
-        text: "The persona is a teenager who will use anything; the constraint is his neighbour who won't. Every flow was checked against both.",
-        pains: ['No awareness of how to report littering', 'Hard to track personal environmental impact', 'Few incentives for participation', 'Accessibility barriers for older and non-tech-savvy users'],
-        persona: { name: 'Rahul, 16', role: 'Eco-activist student · Ernakulam', goals: 'Report waste in seconds, see that it got cleaned, bring friends along', frustrations: 'Complex reporting, no feedback, the feeling that effort has no real impact' },
-        scenario: 'Rahul spots a littered area near his school and reports it through Green Eye in under a minute. Days later, a local volunteer group cleans it; Rahul gets a badge and points for his contribution. Encouraged, he organises a clean-up, drawing in friends and neighbours — proof that small actions can spark big change.' },
-      { type: 'journey', eyebrow: '03 — User journey', title: 'From first ad to first clean-up, in seven steps.', text: 'Mapped end to end so that every opportunity on the right became a backlog item, not a wish.',
-        rows: [ ['Awareness', 'Discovers the app via social media or ads', 'Intrigued', 'Targeted ads and environmental partnerships'], ['Onboarding', 'Signs up and completes a brief tutorial', 'Engaged', 'Simplify sign-up to reduce friction'], ['Exploring', 'Learns how to report and locate issues', 'Curious', 'Better guidance so users understand all features'], ['Identifying', 'Spots waste and uses the location feature', 'Concerned', 'AR or precise geotagging for accuracy'], ['Reporting', 'Uploads a photo, selects waste type, submits', 'Proactive', 'Gamify to encourage frequent reporting'], ['Tracking', 'Monitors clean-up progress, gets notifications', 'Informed', 'Real-time tracking with detailed status'], ['Feedback', 'Joins clean-up events, gives feedback', 'Involved', 'Social features to build community'] ] },
-      { type: 'structure', eyebrow: '04 — Structure & prototype', title: 'Five things a citizen can do, two taps from the home screen.',
-        text: 'The information architecture keeps Report as the first, largest action; everything else — activities, rewards, events, articles — supports the loop that starts there.',
+      { type: 'group', blocks: [
+        { type: 'cards', eyebrow: 'PROJECT OVERVIEW', title: 'A faster way to get litter off the street', cols: 4, cards: [
+          { title: 'Report', text: 'Photo, pin, note or voice memo. Under a minute.' },
+          { title: 'Track', text: 'Follow every report from pending to resolved.' },
+          { title: 'Earn', text: 'Points for verified reports, redeemable at partner stores.' },
+          { title: 'Join', text: 'Community cleanup drives listed by local bodies.' } ] },
+        { type: 'narrative-list', text: 'Green Eye is a community-driven web application designed to empower citizens to report littering, track environmental activities, and access educational resources. The platform aims to foster civic engagement, reward positive actions, and support local environmental initiatives.', items: [] }
+      ] },
+      { type: 'group', blocks: [
+        { type: 'narrative-list', eyebrow: 'USER RESEARCH', title: 'Who we designed for', text: 'User research included interviews and surveys with local residents, environmental volunteers, and municipal staff. Key insights were gathered on motivations, barriers, and technology usage patterns.', items: [] },
+        { type: 'cards', title: 'Pain points', cols: 2, cards: [
+          { title: 'No clear way to report', text: 'Lack of awareness about how to report littering, and where a report even goes.' },
+          { title: 'Impact is invisible', text: 'Difficulty tracking personal environmental impact once a report is filed.' },
+          { title: 'Few reasons to keep going', text: 'Limited incentives for community participation beyond goodwill.' },
+          { title: 'Not built for everyone', text: 'Accessibility barriers for older adults and non-tech-savvy users.' } ] }
+      ] },
+      { type: 'persona', alt: true, title: 'Persona',
+        persona: { name: 'Rahul', role: '14 · School Student, Class 9', location: 'Ernakulam', quote: 'There is a pile of plastic beside the ground where we play. I would report it if it took a minute and I could see someone actually pick it up.' },
+        goals: ['Keep the streets around his school and cricket ground clean', 'Get friends and classmates involved', 'Report a dump in seconds, from his phone, on the way to school'],
+        frustrations: ['Adults tell him to report it but nobody says where', 'Never hears back after complaining', 'Apps that feel like paperwork and give nothing in return'] },
+      { type: 'journey', title: 'User journey map',
+        rows: [ ['01 · Awareness', 'Learns about the app', 'Curious', 'Social media campaigns'], ['02 · Onboarding', 'Signs up, explores', 'Hopeful', 'Simple onboarding, tips'], ['03 · Reporting', 'Submits litter report', 'Empowered', 'Fast, photo-based reporting'], ['04 · Tracking', 'Views activities', 'Motivated', 'Gamified rewards'], ['05 · Learning', 'Reads articles', 'Inspired', 'Curated educational content'] ] },
+      { type: 'structure', eyebrow: 'STRUCTURE & PROTOTYPE', title: 'Five things a citizen can do, two taps from the home screen.',
+        text: 'The information architecture keeps Report as the first, largest action. Everything else, activities, rewards, events and articles, supports the loop that starts there.',
         tree: { roots: ['Welcome', 'Main menu'], branches: [ { node: 'Report', leaves: ['Take photo', 'Mark on map', 'Congrats'] }, { node: 'Your activities', leaves: ['Activity list', 'Chat with group / officials'] }, { node: 'Rewards', leaves: ['Rewards earned', 'Redeem rewards'] }, { node: 'Events', leaves: ['Events in town', 'Your events'] }, { node: 'Articles', leaves: ['Articles list', 'Your article'] } ] },
-        gallery: [ { label: 'Low-fidelity', image: `${import.meta.env.BASE_URL}images/low-fidility-with-connections.png`, imageLabel: 'Image — low-fi wireframe flow, 12 screens', h: 360 }, { label: 'High-fidelity', image: null, imageLabel: 'Image — hi-fi screens: home, report, rewards', h: 360 }, { label: 'Storyboard', image: `${import.meta.env.BASE_URL}images/Port_folio_story_board.jpg`, imageLabel: 'Image — UX storyboard, 6 frames', h: 260 }, { label: 'Storyboard — close-up', image: `${import.meta.env.BASE_URL}images/Port_folio_story_board_closeup.jpg`, imageLabel: 'Image — storyboard close-up', h: 260 } ] },
+        gallery: [],
+        footer: 'Report is the only branch with a terminal confirmation step. Every other branch is a list and a detail view, which keeps the mental model identical across the app.' },
+      { type: 'group', blocks: [
+        { type: 'narrative-list', eyebrow: 'UX STORYBOARDS', title: "Rahul's day, in twelve frames", text: 'Two hand-drawn storyboards framed the scenario before any screens were designed: an app to help users report garbage and plastic waste locations. The big picture follows Rahul from spotting a dump to seeing it cleared. The close-up follows his thumb through the app.', items: [] },
+        { type: 'split-images', parts: [
+          { label: 'Big picture', title: 'From the roadside to the cleanup truck', points: ['Rahul sees garbage dumped beside the road.', 'He remembers the app that can help report it to the authorities.', 'He takes a photo of the garbage.', 'He tags the photo with the location.', 'Rahul walks away with a sense of accomplishment.', 'The waste is disposed of by the government agency responsible for cleaning.'], image: `${import.meta.env.BASE_URL}images/storyboard-bigpicture.jpg`, imageLabel: 'Storyboard — big picture showing Rahul\'s journey from spotting litter to cleanup', imageSide: 'right' },
+          { label: 'Close-up', title: 'Six screens, one report', points: ['Rahul opens the app.', 'He selects Report from the main menu.', 'He takes a photo of the garbage.', 'He confirms the location on the map.', 'Rahul learns 10 points, which he can redeem.', 'Rahul can track his activities, chat with officials and check the progress.'], image: `${import.meta.env.BASE_URL}images/storyboard-closeup.jpg`, imageLabel: 'Storyboard — close-up showing Rahul\'s interaction with the app', imageSide: 'right' }
+        ] }
+      ] },
+      { type: 'narrative-list', text: 'The big picture frames the emotional arc, from frustration to accomplishment. The close-up became the spine of the Report Litter flow: photo, location, confirmation, points, then tracking under My Activities.', items: [] },
+      { type: 'findings', eyebrow: 'USABILITY FINDINGS', title: 'What testing told us, and what changed', text: 'Each finding from usability sessions maps to a concrete decision in the shipped interface.', findings: [
+        { number: '01', finding: 'Users preferred a single-tap report submission', response: 'Report Litter is the only solid-green action on screen. It sits in the navbar, as the first card on mobile, and as the hero CTA.' },
+        { number: '02', finding: 'Visual feedback increased engagement', response: 'Every step of the report flow shows a checkmark when complete, the summary sheet confirms before upload, and a full-screen success state closes the loop.' },
+        { number: '03', finding: 'Some users struggled with map-based location selection', response: '"Get current location" is the primary path. The pin is draggable and a tap anywhere on the map moves it, with coordinates echoed back in plain text.' },
+        { number: '04', finding: 'Accessibility improvements needed for colour contrast and text size', response: 'Text colours were re-tuned to pass WCAG AA. Body copy starts at 15px, labels never drop below 11px, and every interactive element has a visible focus ring.' }
+      ] },
+      { type: 'narrative-list', eyebrow: 'HIGH-FIDELITY SCREENS', title: 'The shipped interface', text: 'One desktop capture, then the mobile journey as eleven device mockups rendered with the production components and sample data. The dotted line traces the order a citizen moves through them.', items: [] },
+      { type: 'journey-screens', title: 'Mobile journey', screens: [
+        { number: '01', name: 'Home', description: 'Hero, one primary action, four tiles.' },
+        { number: '02', name: 'Report Litter', description: 'Four steps, two required. Type and quantity as chips.' },
+        { number: '03', name: 'Take Photos', description: 'Rear camera, thumbnails. Capture and Done.' },
+        { number: '04', name: 'Locate', description: 'Draggable pin with the address echoed back.' },
+        { number: '05', name: 'Speak up', description: 'Live transcript while the mic listens.' },
+        { number: '06', name: 'Comment', description: 'Free text with quick-add tags.' },
+        { number: '07', name: 'Summary', description: 'Everything in one sheet before upload.' },
+        { number: '08', name: 'My Activities', description: 'Status per report and a monthly chart.' },
+        { number: '09', name: 'Rewards', description: 'Balance, redeem, and the point bank.' },
+        { number: '10', name: 'Events', description: 'Upcoming drives with save and join.' },
+        { number: '11', name: 'Articles', description: 'Tagged reads with an estimated time.' }
+      ], footer: 'Screens 01 to 07 are the Report Litter flow end to end. Screens 08 to 11 are where the report pays off: tracking, points, drives and reading. Every mockup uses the same tokens, radii and icon badges as the live app.' },
+      { type: 'narrative-list', title: 'Component specimens', text: 'Rendered live from src/components/ui', items: [] },
+      { type: 'narrative-list', title: 'Buttons', text: 'src/components/ui/Button.tsx', items: [
+        'Primary: Brand fill, white text, soft green glow. Trailing circle icon optional.',
+        'Ghost: White with hairline border. Turns brand on hover.',
+        'Soft: Brand-soft fill for secondary emphasis.',
+        'Frosted: Used only on photography.',
+        'Sizes: sm 14px · md 15px · lg 16px',
+        'Hover: Primary darkens to brand-dark; ghost gets brand text and border. 200ms.',
+        'Focus: 2px brand ring with 2px offset, visible on keyboard focus only.',
+        'Active: No transform. Colour holds, the trailing icon stays put.',
+        'Disabled: 50% opacity, pointer events off.'
+      ] },
+      { type: 'narrative-list', title: 'Cards', text: 'src/components/ui/Card.tsx', items: [
+        'Surface: White, 1px line border, 24px radius, 20 to 24px padding. The default.',
+        'Soft: Brand-soft fill. Used once per row to break rhythm.',
+        'Tint: Mint fill for cards nested inside white cards, like the redeem steps.',
+        'Interactive: Hover me. Border turns brand, card lifts 2px and gains the hover-lift shadow. 200ms.'
+      ] },
+      { type: 'narrative-list', title: 'Inputs', text: 'Native elements styled with tokens', items: [
+        'Text input: Mint fill, line border, 16px radius. Focus adds a 2px brand ring.',
+        'With leading icon: Icon placed inside input.',
+        'Error state: Rejected soft fill background with error message below.',
+        'Textarea: Multi-line input with same styling as text input.',
+        'Choice chips: Selected: brand border and soft fill. Used for type and quantity.',
+        'Segmented control: Group of related options. Selected gets brand fill.'
+      ] },
+      { type: 'narrative-list', title: 'Badges, pills and icons', text: 'Lucide icons · 2px stroke', items: [
+        'Icon badge variants: Solid, Soft, Outline, White. Sizes: sm, md, lg, xl.',
+        'Sizes: 32 / 40 / 48 / 56px with icons at 15 / 18 / 22 / 26px.',
+        'Status pills: Pending, Assigned, Resolved, Rejected, Featured.',
+        'Fully rounded, 11 to 12px semibold, soft background with matching status text colour.',
+        'Dot variant used in tables and lists.',
+        'Icon sizes: 16, 18, 22, 26, 32px. Never below 15px inside a badge.'
+      ] },
+      { type: 'narrative-list', title: 'Motion', text: 'CSS transitions + Motion for sheets', items: [
+        'Fast (200ms): Colour, border and opacity changes on hover and focus.',
+        'Normal (300ms): Sidebar slide, detail view slide-in, tab fades.',
+        'Spring (damping 30 · stiffness 300): Bottom sheets (Motion library), drag-to-dismiss.',
+        'Lift (translateY(-2px)): Interactive cards on hover, paired with hover-lift shadow.'
+      ] },
+      { type: 'cards', title: 'Design patterns', cols: 3, cards: [
+        { title: 'Floating pill navbar', text: 'White, fully rounded, sits on mint page with hairline border. Logo left, links centre, one green action right.' },
+        { title: 'Photo hero with frosted chips', text: 'Full-bleed image, 32px radius, dark gradient overlay. Copy centered, supporting chips in corners.' },
+        { title: 'Icon-badge card', text: '40px green circle with white Lucide icon, title and two lines of muted copy. Most repeated element.' },
+        { title: 'Numbered process', text: 'Four steps flank circular photo. Each step has 36px numbered badge, short title, one-line description.' },
+        { title: 'Bottom sheet', text: 'Mobile modals slide up from bottom with drag handle. 32px top radius, fixed action bar.' },
+        { title: 'Empty and loading states', text: 'Soft icon badge, one sentence copy, single primary action to get started.' }
+      ] },
+      { type: 'two-lists', alt: true, left: { title: 'Numbered process step', items: [['01 Spot the Litter', 'Notice a dumping spot on your route.'], ['02 Snap and Report', 'Capture a photo and drop a pin.']] },
+        right: { title: 'Layout & breakpoints', items: [['Mobile', '0 to 767px – Single column, 16px page padding, bottom sheets, 448px content max'], ['Desktop', '768px and up – Multi-column grids, 24px page padding, 1152px container, modals centred'], ['Mobile-first', 'One breakpoint keeps the codebase small; grids collapse to a single column below it.']] } },
+      { type: 'design-system', eyebrow: 'DESIGN SYSTEM', title: 'One green, four neutrals, three radii', text: 'Every value below is a Tailwind v4 theme token in index.css and is used verbatim across the app. Nothing on this page is a mock-up; the swatches, type and controls are the real components.', spacing: [
+        { value: '4px', usage: 'Icon gaps' },
+        { value: '8px', usage: 'Chip gaps' },
+        { value: '12px', usage: 'Grid gaps (mobile)' },
+        { value: '16px', usage: 'Page padding (mobile)' },
+        { value: '24px', usage: 'Card padding, page padding (desktop)' },
+        { value: '32px', usage: 'Large card padding' },
+        { value: '48px', usage: 'Section header gap' },
+        { value: '64px', usage: 'Section gap' },
+        { value: '88px', usage: 'Section padding' }
+      ], borderRadius: [
+        { name: 'Inner', value: '16px', variable: '--rounded-inner', usage: 'Inputs, nested cards, thumbnails' },
+        { name: 'Card', value: '24px', variable: '--rounded-card', usage: 'All cards, sheets, modals' },
+        { name: 'Hero', value: '32px', variable: '--rounded-hero', usage: 'Hero photo, full-bleed media' },
+        { name: 'Full', value: 'full', variable: '--rounded-full', usage: 'Buttons, pills, icon badges, navbar' }
+      ], elevation: [
+        { name: 'None (default)', value: 'border 1px var(--color-line)', usage: 'Cards rely on a hairline border instead of a shadow' },
+        { name: 'Button glow', value: '0 6px 18px -6px rgba(46,158,79,.6)', usage: 'Primary button only' },
+        { name: 'Hover lift', value: '0 12px 16px -18px rgba(31,42,36,.35) + translateY(-2px)', usage: 'Interactive cards on hover' },
+        { name: 'Floating nav', value: '0 18px 34px -20px rgba(31,42,36,.35)', usage: 'Pill navbar on the home page' },
+        { name: 'Stat chip', value: '0 16px 32px -16px rgba(31,42,36,.4)', usage: 'White chips placed over photos' }
+      ], typography: {
+        family: 'Plus Jakarta Sans',
+        weights: [400, 500, 600, 700],
+        description: 'Geometric, slightly wide, with a friendly lowercase. Headlines use 600 with tight tracking; body copy stays at 400.',
+        scales: [
+          { name: 'Display', size: '56px', weight: 600, lineHeight: 1.08, tracking: '-0.02em' },
+          { name: 'H1', size: '38px', weight: 600, lineHeight: 1.15, tracking: '-0.02em' },
+          { name: 'H2', size: '28px', weight: 600, lineHeight: 1.12, tracking: '-0.02em' },
+          { name: 'H3', size: '20px', weight: 600, lineHeight: 1.35, tracking: '-0.01em' },
+          { name: 'H4', size: '16px', weight: 600, lineHeight: 1.4, tracking: '0' },
+          { name: 'Body', size: '16px', weight: 400, lineHeight: 1.6, tracking: '0' },
+          { name: 'Body small', size: '14px', weight: 400, lineHeight: 1.55, tracking: '0' },
+          { name: 'Caption', size: '12px', weight: 500, lineHeight: 1.4, tracking: '0' },
+          { name: 'Label', size: '12px', weight: 600, lineHeight: 1.4, tracking: '0.18em' },
+          { name: 'Button', size: '15px', weight: 600, lineHeight: 1.4, tracking: '0' }
+        ]
+      }, colors: {
+        brand: [
+          { name: 'Brand', value: '#2E9E4F', variable: '--color-brand', usage: 'Buttons, icon badges, active states' },
+          { name: 'Brand Dark', value: '#257A3D', variable: '--color-brand-dark', usage: 'Hover state, small brand text' },
+          { name: 'Brand Soft', value: '#DDF2E3', variable: '--color-brand-soft', usage: 'Badge circles, tinted feature cards' },
+          { name: 'Brand Tint', value: '#EEF7F0', variable: '--color-brand-tint', usage: 'Page background, input fills' }
+        ],
+        neutrals: [
+          { name: 'Surface', value: '#FFFFFF', variable: '--color-surface', usage: 'Cards, navbar, sheets' },
+          { name: 'Ink', value: '#1F2A24', variable: '--color-ink', usage: 'Headlines, primary text' },
+          { name: 'Ink Muted', value: '#5F6F66', variable: '--color-ink-muted', usage: 'Body copy, captions, nav links' },
+          { name: 'Line', value: '#E3EBE5', variable: '--color-line', usage: 'Card borders, dividers' }
+        ],
+        status: [
+          { name: 'Pending', value: '#BF5F00', variable: '--color-status-pending', usage: 'Open reports' },
+          { name: 'Resolved', value: '#2E9E4F', variable: '--color-status-resolved', usage: 'Closed reports' },
+          { name: 'Rejected', value: '#A63B45', variable: '--color-status-rejected', usage: 'Errors, destructive' },
+          { name: 'Info', value: '#2B6399', variable: '--color-status-info', usage: 'Assigned reports' }
+        ],
+        statusTints: [
+          { name: 'Pending Soft', value: '#FBF1DE', variable: '--color-status-pending-soft', usage: 'Pending pill background' },
+          { name: 'Resolved Soft', value: '#DDF2E3', variable: '--color-status-resolved-soft', usage: 'Resolved pill background' },
+          { name: 'Rejected Soft', value: '#FBE6E8', variable: '--color-status-rejected-soft', usage: 'Error message background' },
+          { name: 'Info Soft', value: '#E3EEF8', variable: '--color-status-info-soft', usage: 'Info pill background' }
+        ]
+      }, effects: [
+        { name: 'Hero overlay', description: 'linear-gradient(180deg, rgba(20,48,30,.15), rgba(20,48,30,.55))', usage: 'Darkens photography so white text stays legible' },
+        { name: 'Frosted glass', description: 'rgba(255,255,255,.20) + backdrop-blur 12px + 1px', usage: 'Chips and buttons placed on photos' }
+      ] },
+      { type: 'narrative-list', eyebrow: 'ACCESSIBILITY', title: 'Built to pass, not just to look right', text: 'Contrast ratios below are computed at render time from the live hex values, so this table can\'t drift from the tokens.', items: [
+        'Sufficient colour contrast for text and buttons, verified live in the table below',
+        'Alt text for all images and icons, with aria-labels on icon-only buttons',
+        'Keyboard navigability for all interactive elements with a visible 2px brand focus ring',
+        'Scalable text and responsive layouts that reflow from 320px up',
+        'WCAG 2.1 AA compliant: 4.5:1 for normal text, 3:1 for large text (18px+ bold or 24px+) and UI components'
+      ] },
       { type: 'two-lists', alt: true, left: { eyebrow: '05 — What testing showed', title: 'Four findings, two of them fixes.', items: ['Users preferred a single-tap report submission', 'Visual feedback (progress bars, confirmation screens) increased engagement', 'Some users struggled with map-based location selection', 'Colour contrast and text size needed work for older users'] },
         right: { eyebrow: '06 — Accessibility', title: 'The neighbour test.', items: [ ['Contrast', 'Sufficient colour contrast for all text and buttons'], ['Alt text', 'Every image and icon described'], ['Keyboard', 'All interactive elements reachable without a pointer'], ['Scalable', 'Text and layouts that hold at larger sizes'] ] } },
       { type: 'cards', eyebrow: '07 — Takeaways & next', cols: 3, cards: [ { label: 'Takeaway 01', title: 'Community engagement is what sustains usage — not features' }, { label: 'Takeaway 02', title: 'Gamification and rewards drive participation, but only when tied to real clean-ups' }, { label: 'Next', title: 'Pilot in more neighbourhoods, integrate with local government systems, keep testing accessibility' } ] },
+      { type: 'two-lists', alt: false, left: { eyebrow: 'TAKEAWAYS & NEXT STEPS', title: 'What we learned, and where this goes', items: [['Community engagement', 'Community engagement is key to sustained usage'], ['Gamification works', 'Gamification and rewards drive participation'], ['Small token set', 'A small token set beats a large one: one green and four neutrals were enough for every screen']] },
+        right: { title: 'Next steps', items: [['01', 'Launch a pilot in more neighbourhoods across Kerala'], ['02', 'Integrate with local government systems so assignments flow both ways'], ['03', 'Conduct further accessibility testing with older adults and screen-reader users'], ['04', 'Replace the mock activity data on the landing page with the signed-in user\'s live reports']] } },
     ],
     takeaway: { text: 'The report button was never the hard part. Closing the loop — showing someone their report turned into a cleaner street — is what made people come ', em: 'back.', cta: 'Talk to me about civic products' },
     next: 'rewake',
@@ -115,36 +294,89 @@ export const caseStudies = [
     slug: 'rewake',
     number: '03',
     title: 'Rewake Physio & Rehab',
-    category: 'Healthcare platform',
+    category: 'Healthcare booking experience',
     categoryShort: 'Healthcare',
-    summary: 'Real-time slot booking and a clinic dashboard replacing calls and spreadsheets.',
-    tags: ['UX research', 'Healthcare', 'Prototyping'],
+    summary: 'A mobile-first booking flow that helps patients book a physio session without an account, a callback, or confusion.',
+    href: '/work/rewake',
+    tags: ['Healthcare UX', 'Booking flow', 'Responsive web'],
     hero: {
-      eyebrow: 'Case study 03 · Rewake Physio & Rehab · Healthcare platform',
-      title: 'Booking a physio slot in three steps — ', titleEm: 'and no one double-booked.',
-      lede: 'A role-based appointment platform that replaced calls and spreadsheets with real-time availability, a guided patient flow and WhatsApp confirmations for a rehab clinic.',
-      image: null, imageLabel: 'Hero screenshot — patient booking, step 2: choose a slot',
-      meta: [ { label: 'Role', value: 'UX Designer', sub: 'Research, flows, UI, prototype' }, { label: 'Tools', value: 'Figma, FigJam', sub: 'Journeys in FigJam, UI in Figma' }, { label: 'Timeline', value: '4 weeks', sub: 'Discovery to clickable prototype' }, { label: 'Type', value: 'Web application', sub: 'Patient portal + admin dashboard' } ],
+      eyebrow: 'Case study 03 · Healthcare experience',
+      title: 'A slow clinic process, redesigned into a ',
+      titleEm: 'calm booking journey.',
+      lede: 'Rewake needed a booking flow that felt trustworthy on a phone, respected the clinic workflow, and reduced admin friction without increasing the number of screens. This version stands on its own inside the portfolio and does not rely on the Rewake app codebase.',
+      image: null,
+      imageLabel: 'Rewake case study hero',
+      meta: [
+        { label: 'Role', value: 'Product design & front-end build', sub: 'UX, UI, interaction design, prototyping' },
+        { label: 'Platform', value: 'Responsive web', sub: 'Mobile-first patient flow + admin dashboard' },
+        { label: 'Stack', value: 'React 19 · Tailwind CSS', sub: 'Booking and clinic operations' },
+        { label: 'Context', value: 'Pandikkad, Kerala', sub: 'Single-clinic physiotherapy practice' },
+      ],
     },
-    glance: { problem: 'Manual scheduling by phone and spreadsheet meant double bookings, no visibility of availability and a heavy admin load.', solution: 'One system with live slot availability, a three-step patient flow, and an admin dashboard that sends confirmations over WhatsApp.', impact: 'Designed for higher booking conversion, fewer no-shows and less admin time — with the metrics to prove it once live.' },
+    glance: {
+      problem: 'The clinic was still relying on calls, WhatsApp coordination and spreadsheet-based scheduling, which created confusion, missed bookings and slow follow-up.',
+      solution: 'A focused booking UX with live availability, a guided patient flow, and a clear confirmation step that matched how the clinic already works.',
+      impact: 'Patients can book with less friction, staff spend less time coordinating manually, and the clinic gets a cleaner, more reliable daily schedule.',
+    },
     sections: [
-      { type: 'narrative-list', eyebrow: '01 — The problem', title: 'Five ways a spreadsheet fails a clinic.',
-        text: "The clinic ran on calls, WhatsApp threads and a shared spreadsheet. It worked until it didn't: two patients in one slot, a physiotherapist with no view of tomorrow, and reception spending afternoons on follow-ups.",
-        items: ['Double bookings and scheduling conflicts', 'High administrative workload at reception', 'No real-time visibility of availability', 'Poor patient experience and communication', 'High no-show rate and manual follow-ups'] },
+      { type: 'narrative-list', eyebrow: '01 — The problem', title: 'The manual booking process was creating friction for everyone.',
+        text: 'The original flow depended on phone calls and manual coordination. It worked until it did not: patients had to ask the right question in the right window, staff had to chase confirmations, and every booking needed a human to keep it in sync.',
+        items: ['No clear view of real availability', 'Patients could not book without calling during open hours', 'Staff had to keep track through multiple channels', 'Manual coordination created avoidable delays and errors', 'The booking experience did not feel dependable'] },
       { type: 'group', alt: true, blocks: [
-        { type: 'cards', eyebrow: '02 — Goals', title: 'Three goals, one system.', text: "Every feature had to move one of these three numbers; anything that didn't was cut from the first release.", cols: 3, cards: [ { label: 'Business goal', title: 'Increase appointment booking conversion and operational efficiency.' }, { label: 'User goal', title: 'Let patients book quickly, easily and with confidence.' }, { label: 'Efficiency goal', title: 'Reduce no-shows, manual errors and administrative workload.' } ] },
-        { type: 'cards', eyebrow: "03 — Who it's for", cols: 4, cards: [ { label: '01', title: 'Patients', text: 'Seeking treatment and easy booking' }, { label: '02', title: 'Admin staff', text: 'Managing bookings and daily operations' }, { label: '03', title: 'Physiotherapists', text: 'Structured schedules and availability' }, { label: '04', title: 'Clinic management', text: 'Operations, reports and growth' } ] } ] },
-      { type: 'solution-hub', eyebrow: '04 — The solution', title: 'One source of truth for the slot.', text: 'A centralised, role-based platform that automates slot management, improves booking accuracy and keeps patients informed without reception picking up the phone.',
-        tiles: [ ['Real-time availability', 'Slots update the moment one is taken'], ['Patient booking', 'Three steps, no account required'], ['Admin dashboard', 'Every booking, filterable, editable'], ['WhatsApp confirmations', 'The channel patients already read'], ['Reports', 'Excel export for management'] ],
-        featuresTitle: 'Eight features, first release.', features: ['3-step booking flow', 'Real-time slot availability', 'Admin booking dashboard', 'Search & filters for bookings', 'Update / edit / delete bookings', 'WhatsApp confirmations', 'Excel export reports', 'Physiotherapist profile management'],
-        image: null, imageLabel: 'Screenshot — admin dashboard: bookings table with filters + WhatsApp action' },
-      { type: 'steps', alt: true, eyebrow: '05 — Two journeys', title: 'Patients get three steps. Admins get five.', text: 'The patient flow is deliberately shorter than the admin flow — the person who needs the least training gets the least to do.',
-        tracks: [ { label: 'Patient booking journey', steps: [ ['Select', 'Date and physiotherapist'], ['Choose', 'An available slot, live'], ['Enter', 'Name, phone, reason'], ['Confirm', 'Summary and WhatsApp confirmation'] ] }, { label: 'Admin management journey', steps: [ ['Log in', 'Role-based access'], ['View', 'All bookings, by day or physio'], ['Filter', 'By status, physio, patient'], ['Update', 'Edit, reschedule or cancel'], ['Notify', 'Confirmation over WhatsApp'] ] } ] },
-      { type: 'decisions-impact', left: { eyebrow: '06 — Design decisions', title: 'Five decisions, each tied to a goal.', items: [ ['Guided booking flow', 'A simple three-step flow reduces cognitive load and lifts completion'], ['Real-time availability', 'Only valid slots are shown, preventing double bookings and building trust'], ['Admin dashboard', 'Centralised control for quick updates, visibility and faster operations'], ['WhatsApp integration', 'A familiar channel improves confirmation rates and cuts no-shows'], ['Role-based access', 'Protects patient data and secures admin functions'] ] },
-        right: { eyebrow: '07 — Impact', title: 'What we measure.', text: "Figures to be filled from the clinic's first full month on the platform.", metrics: [ { value: '[+XX%]', label: 'Booking conversion', text: 'Self-service booking, no calls', tone: 'up' }, { value: '[−XX%]', label: 'Admin workload', text: 'Less manual scheduling and follow-up', tone: 'down' }, { value: '[−XX%]', label: 'No-shows', text: 'Quick confirmations and reminders', tone: 'down' }, { value: '[XX]', label: 'Reports exported', text: 'Real-time and exportable', tone: 'neutral' } ] } },
-      { type: 'arrow-list', alt: true, eyebrow: "08 — What's next", items: ['Full slot management (block, unblock, custom slots)', 'Extended physiotherapist management (edit, remove)', 'Automated reminders and follow-up notifications', 'Integrated contact-form backend', 'Role and permission management for larger teams', 'Advanced analytics and reporting dashboard'] },
+        { type: 'cards', eyebrow: '02 — What mattered', title: 'Three goals for the redesign', cols: 3, cards: [
+          { label: 'Business goal', title: 'Reduce booking friction without adding clinic admin work.' },
+          { label: 'User goal', title: 'Let patients book from their phone in a few confident taps.' },
+          { label: 'Operations goal', title: 'Keep scheduling visible, reliable and easy to manage.' } ] },
+        { type: 'cards', eyebrow: '03 — Who it serves', cols: 4, cards: [
+          { label: 'Patients', title: 'Need a quick, low-stress way to confirm an appointment.', text: 'Especially from mobile when they are already busy.' },
+          { label: 'Clinic staff', title: 'Need clear bookings with less follow-up.', text: 'They need one source of truth for daily slots.' },
+          { label: 'Physios', title: 'Need a predictable schedule with fewer issues.', text: 'They should not spend time sorting manual overlaps.' },
+          { label: 'Owners', title: 'Need a faster path to conversion.', text: 'Without a chaotic back office process around it.' } ] }
+      ] },
+      { type: 'solution-hub', eyebrow: '04 — The solution', title: 'A small booking system designed to feel obvious', text: 'The redesign focused on a single outcome: help patients move from “I need an appointment” to “I’ve confirmed a slot” without uncertainty.',
+        tiles: [
+          ['Live slot data', 'Patients only see actual availability'],
+          ['Guided booking', 'Three steps with a clear summary before confirmation'],
+          ['Clinic visibility', 'Staff can track changes without spreadsheet chasing'],
+          ['WhatsApp confirmation', 'A channel patients already check more than email'],
+          ['Trustworthy flow', 'Low cognitive load and no account barrier']
+        ],
+        featuresTitle: 'Key experience principles',
+        features: ['Short booking flow', 'Clear slot selection', 'Visible confirmation', 'Mobile-first form design', 'Confidence-building copy', 'Operational clarity'],
+        image: null,
+        imageLabel: 'Rewake booking flow solution' },
+      { type: 'steps', alt: true, eyebrow: '05 — Journey', title: 'The booking path stays short on purpose.', text: 'Every step answers one question: what do I choose, is it valid, and what happens next?', tracks: [
+          { label: 'Patient flow', steps: [
+            ['Choose', 'Date and physio or any available physio'],
+            ['Pick', 'A valid time slot with live availability'],
+            ['Confirm', 'Name, phone and booking summary'],
+            ['Receive', 'Instant confirmation in a familiar channel']
+          ] },
+          { label: 'Clinic workflow', steps: [
+            ['Review', 'Daily bookings in one place'],
+            ['Filter', 'Check by date or physio'],
+            ['Resolve', 'Adjust or reschedule when needed'],
+            ['Notify', 'Send confirmation and keep the day on track']
+          ] }
+        ] },
+      { type: 'decisions-impact', left: { eyebrow: '06 — Design decisions', title: 'The biggest gains came from making the flow feel obvious.', items: [
+        ['Short path to booking', 'Every screen leads back to the same clear next step'],
+        ['Clear labels', 'The patient understands what each action means before committing'],
+        ['Visible confirmation', 'The chosen slot is summarised before the booking is final'],
+        ['Lower risk on mobile', 'The form is designed around small screens and one-handed use'],
+        ['Trust-building tone', 'The interface reassures patients without overloading them']
+      ] },
+        right: { eyebrow: '07 — Impact', title: 'What changed.', text: 'The redesign focused on speed, trust and operational clarity for a small clinic with busy hands-on staff.', metrics: [
+          { value: '3 steps', label: 'patient booking flow', text: 'From initial click to confirmed slot', tone: 'up' },
+          { value: '0 sign-ups', label: 'required before booking', text: 'No account barrier or password friction', tone: 'neutral' },
+          { value: 'Live', label: 'availability', text: 'Time slots are shown as they really are', tone: 'up' },
+          { value: 'WhatsApp', label: 'confirmation channel', text: 'A familiar, trusted communication path', tone: 'neutral' }
+        ] } },
+      { type: 'narrative-list', eyebrow: '08 — Takeaway', title: 'The real challenge was not filling the booking form — it was reducing uncertainty.',
+        text: 'Once the patient could see likely availability, commit to a clear slot, and understand the confirmation step, the clinic workflow suddenly became calmer for both patients and staff. The experience stopped asking people to trust the process and instead made the process easy to trust.',
+        items: ['Healthcare booking flows need clarity more than complexity', 'A short, credible path feels safer than a wider, ambiguous one', 'Operational tools are most effective when they disappear into the background'] }
     ],
-    takeaway: { text: 'User-centred design and automation can turn a manual, phone-bound process into something patients and staff both find ', em: 'effortless.', cta: 'Talk to me about healthcare products' },
+    takeaway: { text: 'Rewake was never just a booking page — it was a healthcare access problem disguised as a form. The redesign made the entire journey feel ', em: 'clear, quick and trustworthy.', cta: 'Talk to me about healthcare product design' },
     next: 'smartops',
   },
 ];

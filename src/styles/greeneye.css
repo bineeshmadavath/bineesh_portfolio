@@ -1,0 +1,90 @@
+/* Green Eye case study — Tailwind v4, scoped so it can't restyle the rest of the portfolio.
+   - No global preflight: a minimal reset lives under .ge instead.
+   - Utilities are generated only from the Green Eye files listed in @source.
+   - Loaded after the portfolio stylesheets so the scoped reset wins over base.css. */
+
+@import "tailwindcss/theme.css" layer(theme);
+
+@source "../pages/CaseStudy-greenEye.tsx";
+@source "../data/caseStudy.ts";
+@source "../components/ui/*.tsx";
+@source "../components/phone";
+
+@theme {
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  /* Brand */
+  --color-brand: #2E9E4F;
+  --color-brand-dark: #237A3D;
+  --color-brand-soft: #DDF2E3;
+  --color-brand-tint: #EEF7F0;
+
+  /* Neutrals */
+  --color-surface: #FFFFFF;
+  --color-ink: #1F2A24;
+  --color-ink-muted: #5F6F66; /* 5.3:1 on white, 4.9:1 on brand-tint (AA) */
+  --color-line: #E3EBE5;
+
+  /* Status (muted so they don't compete with brand green) */
+  --color-status-pending: #8F5F00;
+  --color-status-pending-soft: #FBF1DE;
+  --color-status-resolved: #2E9E4F;
+  --color-status-resolved-soft: #DDF2E3;
+  --color-status-rejected: #A63B45;
+  --color-status-rejected-soft: #FBE6E8;
+  --color-status-info: #2B6399;
+  --color-status-info-soft: #E3EEF8;
+
+  /* Shape */
+  --radius-card: 24px;
+  --radius-inner: 16px;
+  --radius-hero: 32px;
+}
+
+/* ── Scoped reset (the parts of preflight the page relies on) ──
+   :where() keeps specificity at element level so utilities always win. */
+.ge {
+  font-family: var(--font-sans);
+  color: var(--color-ink);
+  background: var(--color-brand-tint);
+  line-height: 1.5;
+  font-feature-settings: "ss01", "cv11";
+  -webkit-font-smoothing: antialiased;
+}
+:where(.ge) *, :where(.ge) ::before, :where(.ge) ::after { border: 0 solid; }
+:where(.ge) h1, :where(.ge) h2, :where(.ge) h3, :where(.ge) h4, :where(.ge) h5, :where(.ge) h6 {
+  margin: 0; font-family: inherit; font-size: inherit; line-height: inherit;
+  font-weight: 600; letter-spacing: -0.025em; color: var(--color-ink);
+}
+:where(.ge) p, :where(.ge) blockquote, :where(.ge) figure, :where(.ge) dl, :where(.ge) dd,
+:where(.ge) ol, :where(.ge) ul, :where(.ge) table { margin: 0; }
+:where(.ge) ol, :where(.ge) ul { list-style: none; padding: 0; }
+:where(.ge) table { border-collapse: collapse; }
+:where(.ge) th { font-weight: inherit; }
+:where(.ge) a, :where(.ge) a:hover { color: inherit; text-decoration: none; }
+:where(.ge) button, :where(.ge) input, :where(.ge) textarea, :where(.ge) select {
+  font: inherit; color: inherit; background: transparent; margin: 0; padding: 0; border-radius: 0;
+}
+:where(.ge) button { cursor: pointer; }
+:where(.ge) img, :where(.ge) svg, :where(.ge) video { display: block; vertical-align: middle; }
+:where(.ge) img, :where(.ge) video { max-width: 100%; height: auto; }
+/* The portfolio's own .grid adds a gap; Green Eye's grid utility shouldn't inherit it. */
+:where(.ge) .grid { gap: 0; }
+
+@utility frosted {
+  @apply bg-white/20 backdrop-blur-md border border-white/30 text-white;
+}
+@utility hero-overlay {
+  background: linear-gradient(
+    to bottom,
+    rgba(20, 40, 30, 0.15) 0%,
+    rgba(20, 40, 30, 0.35) 50%,
+    rgba(20, 40, 30, 0.55) 100%
+  );
+}
+@utility scrollbar-hide {
+  scrollbar-width: none;
+  &::-webkit-scrollbar { display: none; }
+}
+
+@tailwind utilities source(none);

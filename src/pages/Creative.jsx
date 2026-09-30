@@ -40,7 +40,7 @@ export default function Creative() {
               <Eyebrow>Creative works · Paintings, sketches, illustration, animation</Eyebrow>
               <h1>Before product design, there was <em className="em">a pencil.</em></h1>
             </div>
-            <p className="lede">I started as a 2D animator and illustrator long before the first wireframe. This is the personal work that never stopped — and the eye for colour, hierarchy and motion that quietly runs through every enterprise screen I design.</p>
+            <p className="lede">I started as a 2D animator and illustrator long before the first wireframe. This is the personal work that never stopped — and the eye for colour, hierarchy and motion that quietly runs through my creation.</p>
           </div>
         </div>
       </section>

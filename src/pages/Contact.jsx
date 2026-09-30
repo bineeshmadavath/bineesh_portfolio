@@ -14,7 +14,7 @@ export default function Contact() {
   const direct = [
     ['Email', profile.email, `mailto:${profile.email}`],
     ['Phone', profile.phone, profile.phoneHref],
-    ...profile.socials.map((s) => [s.label, s.handle, s.href]),
+    ...profile.socials.filter((s) => !['GitHub', 'X'].includes(s.label)).map((s) => [s.label, s.handle, s.href]),
   ];
   const here = [
     { label: "While you're here · 01", title: `${caseStudies[0].title} — AI inference review`, to: `/work/${caseStudies[0].slug}` },

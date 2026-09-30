@@ -5,7 +5,7 @@ import { Label, Section, Tags } from '../ui/Primitives';
 
 function FeaturedCard({ c }) {
   return (
-    <Link to={`/work/${c.slug}`} className="card card--dotted bento__feature" style={{ padding: 'clamp(24px, 3vw, 44px)', gap: 28 }}>
+    <Link to={c.href || `/work/${c.slug}`} className="card card--dotted bento__feature" style={{ padding: 'clamp(24px, 3vw, 44px)', gap: 28 }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', gap: 12, flexWrap: 'wrap' }}>
         <Label tone="accent">{c.number} · Featured</Label>
         <Label>{c.category}</Label>
@@ -30,9 +30,27 @@ function FeaturedCard({ c }) {
   );
 }
 
+// Photo background with a phone mockup rising from the bottom edge, as in the case study hero.
+function DeviceThumb({ thumb }) {
+  return (
+    <div role="img" aria-label={thumb.label} style={{ position: 'relative', overflow: 'hidden', borderRadius: '20px', border: '1px solid var(--border)', background: 'var(--alt)', aspectRatio: '16 / 10' }}>
+      <img src={thumb.background} alt="" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', opacity: 0.9 }} />
+      <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, rgba(20,40,30,.15) 0%, rgba(20,40,30,.35) 50%, rgba(20,40,30,.55) 100%)' }} />
+      <div style={{ position: 'absolute', left: '50%', top: '12%', bottom: '-12%', transform: 'translateX(-50%)', width: '46%', borderRadius: '22px', border: '5px solid #fff', overflow: 'hidden', background: '#EEF7F0', boxShadow: '0 24px 48px -18px rgba(0,0,0,.5)' }}>
+        <img src={thumb.device} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top' }} />
+      </div>
+    </div>
+  );
+}
+
 function SmallCard({ c }) {
   return (
-    <Link to={`/work/${c.slug}`} className="card" style={{ gap: 20 }}>
+    <Link to={c.href || `/work/${c.slug}`} className="card" style={{ gap: 20 }}>
+      {c.thumb ? <DeviceThumb thumb={c.thumb} /> : c.hero?.image ? (
+        <div style={{ overflow: 'hidden', borderRadius: '20px', border: '1px solid var(--border)', background: 'var(--alt)', aspectRatio: '16 / 10' }}>
+          <img src={c.hero.image} alt={c.hero.imageLabel || c.title} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+        </div>
+      ) : null}
       <div style={{ display: 'flex', justifyContent: 'space-between' }}>
         <Label tone="accent">{c.number}</Label>
         <Label>{c.categoryShort}</Label>

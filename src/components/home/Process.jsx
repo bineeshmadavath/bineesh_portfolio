@@ -8,7 +8,7 @@ export default function Process() {
         <div className="stack" style={{ '--stack-gap': '18px' }}>
           <Eyebrow>02 — How I work</Eyebrow>
           <h2>Research to release, one continuous loop.</h2>
-          <p className="lede">Because I write front-end code as well as design it, the handoff isn't a cliff — it's the same person on both sides.</p>
+          <p className="lede">I turn complex problems into meaningful product experiences through continuous research, design, collaboration, and validation.</p>
         </div>
         <NumberedList items={profile.process.map((s) => [s.title, s.text])} />
       </div>

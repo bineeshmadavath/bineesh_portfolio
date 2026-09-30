@@ -1,12 +1,12 @@
 import { Section } from '../ui/Primitives';
-import { ArrowListBlock, Cards, DecisionsImpact, Journey, Metrics, NarrativeList, Numbered, Persona, Quotes, Research, SolutionHub, SplitImages, Steps, Structure, TabsBlock, TwoLists } from './blocks';
+import { ArrowListBlock, Cards, DecisionsImpact, DesignSystem, Findings, Journey, JourneyScreens, Metrics, NarrativeList, Numbered, Persona, Quotes, Research, SolutionHub, SplitImages, Steps, Structure, TabsBlock, TwoLists } from './blocks';
 
 // Blocks that render their own <Section> vs. blocks that are placed inside one.
 const inline = { cards: Cards, quotes: Quotes };
 const standalone = {
   'narrative-list': NarrativeList, 'split-images': SplitImages, tabs: TabsBlock, numbered: Numbered, metrics: Metrics,
-  research: Research, persona: Persona, journey: Journey, structure: Structure, 'two-lists': TwoLists,
-  'solution-hub': SolutionHub, steps: Steps, 'decisions-impact': DecisionsImpact, 'arrow-list': ArrowListBlock,
+  research: Research, persona: Persona, journey: Journey, structure: Structure, 'two-lists': TwoLists, findings: Findings,
+  'journey-screens': JourneyScreens, 'design-system': DesignSystem, 'solution-hub': SolutionHub, steps: Steps, 'decisions-impact': DecisionsImpact, 'arrow-list': ArrowListBlock,
 };
 
 export default function CaseSection({ section }) {

@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
-import { Link, NavLink, useLocation } from 'react-router-dom';
+import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { profile } from '../../data/profile';
 import ThemeToggle from './ThemeToggle';
-import { Close, Menu } from '../ui/Icons';
+import { Close, Menu, ArrowLeft } from '../ui/Icons';
 
 const links = [
   { to: '/', label: 'Work', end: true },
@@ -13,6 +13,8 @@ const links = [
 export default function Nav() {
   const [open, setOpen] = useState(false);
   const { pathname } = useLocation();
+  const navigate = useNavigate();
+  const isHome = pathname === '/';
   useEffect(() => { setOpen(false); }, [pathname]);
   useEffect(() => {
     if (!open) return;
@@ -24,9 +26,21 @@ export default function Nav() {
   const isWork = (isActive) => isActive || pathname.startsWith('/work');
 
   return (
-    <header className="container">
-      <nav className="nav" aria-label="Primary">
-        <Link to="/" className="nav__brand">{profile.name}</Link>
+    <header className="site-header">
+      <nav className="container nav" aria-label="Primary">
+        <div className="nav__brand-group">
+          {!isHome && (
+            <button
+              type="button"
+              className="nav__back"
+              onClick={() => navigate(-1)}
+              aria-label="Go back"
+            >
+              <ArrowLeft />
+            </button>
+          )}
+          <Link to="/" className="nav__brand">{profile.name}</Link>
+        </div>
         <div className="nav__links">
           {links.map((l) => (
             <NavLink key={l.to} to={l.to} end={l.end} className="nav__link" aria-current={undefined}

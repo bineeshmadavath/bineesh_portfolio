@@ -28,13 +28,13 @@ export default function Tabs({ tabs }) {
         ))}
       </div>
       <div role="tabpanel" id={`${id}-panel-${t.id}`} aria-labelledby={`${id}-tab-${t.id}`} className="tabpanel">
-        <div className="split split--8-4">
-          <Frame image={t.image} label={t.imageLabel} height={380} />
+        <div className="split split--4-8">
           <div className="stack" style={{ '--stack-gap': '14px' }}>
             <Label tone="accent">{t.label}</Label>
             <h3>{t.title}</h3>
             <ArrowList items={t.points} />
           </div>
+          <Frame image={t.image} label={t.imageLabel} height={380} />
         </div>
       </div>
     </div>

@@ -23,7 +23,7 @@ const illustrationImages = [
   img('illustrations', 'story-book-04.png'),
 ];
 
-const motionThumbnail = img('video', 'art-motion.jpg');
+const motionThumbnail = img('video', 'art-motion.png');
 const motionVideos = [
   { type: 'video', src: 'https://player.vimeo.com/video/39095436', thumbnail: 'https://vumbnail.com/39095436.jpg', title: 'Stories in Motion on Vimeo' },
   { type: 'video', src: 'https://www.youtube.com/embed/uFqdKgqHskY', thumbnail: 'https://img.youtube.com/vi/uFqdKgqHskY/hqdefault.jpg', title: 'Stories in Motion on YouTube' },
@@ -38,7 +38,7 @@ export const collections = [
 ];
 
 export const bridge = [
-  { label: 'Colour', title: 'Palettes that survive a dashboard', text: 'Twenty years of mixing colour by eye is why the semantic colour rules in the SmartVision system took an afternoon, not a sprint.' },
+  { label: 'Colour', title: 'Palettes that survive a dashboard', text: 'Years of working with colour taught me how to make palettes work beyond individual screens—across products, states, and systems.' },
   { label: 'Hierarchy', title: 'Composition is information architecture', text: 'Where the eye lands first in a painting is the same problem as where it lands first on a review screen.' },
   { label: 'Motion', title: 'Timing is a UX tool', text: 'Animation training makes micro-interactions feel considered — easing, anticipation, follow-through — not decorative.' },
 ];
