@@ -8,6 +8,7 @@ const paintingImages = [
 ];
 
 const scribbleImages = [
+  img('scribbles', 'scribble-01.jpg'),
   img('scribbles', 'indians.jpg'),
   img('scribbles', 'Scribble-Soccor.png'),
   img('scribbles', 'Scribble-Woman with Violin.png'),
