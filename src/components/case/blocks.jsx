@@ -1,4 +1,4 @@
-import { ArrowList, Card, Eyebrow, Frame, Label, NumberedList, RuledList, Section, SectionHead, StepTracker, Tags } from '../ui/Primitives';
+import { ArrowList, Card, Eyebrow, Frame, Label, NumberedList, RuledList, Section, SectionHead, Tags } from '../ui/Primitives';
 import Tabs from './Tabs';
 
 const Stack = ({ gap = 40, children, style }) => <div className="stack" style={{ '--stack-gap': `${gap}px`, ...style }}>{children}</div>;
@@ -400,54 +400,6 @@ export function TwoLists({ s }) {
       <div className="grid grid--2" style={{ gap: 'clamp(28px, 4.4vw, 64px)' }}>
         <Stack gap={24}><Eyebrow>{s.left.eyebrow}</Eyebrow><h2 style={{ fontSize: 'clamp(1.75rem, 2.8vw, 2.5rem)' }}>{s.left.title}</h2><RuledList items={s.left.items} tone="accent" /></Stack>
         <Stack gap={24}><Eyebrow>{s.right.eyebrow}</Eyebrow><h2 style={{ fontSize: 'clamp(1.75rem, 2.8vw, 2.5rem)' }}>{s.right.title}</h2><NumberedList items={s.right.items} /></Stack>
-      </div>
-    </Section>
-  );
-}
-
-export function SolutionHub({ s }) {
-  return (
-    <Section>
-      <Stack gap={48}>
-        <SectionHead eyebrow={s.eyebrow} title={s.title} text={s.text} />
-        <div className="grid grid--5" style={{ gap: 16 }}>
-          {s.tiles.map(([a, b]) => <div key={a} className="card" style={{ gap: 6, padding: 20 }}><div className="card__title" style={{ fontSize: '1.125rem' }}>{a}</div><div className="body body--sm" style={{ fontSize: '.8125rem' }}>{b}</div></div>)}
-        </div>
-        <div className="split split--4-8">
-          <Stack gap={16}>
-            <Label>Key features</Label><h3>{s.featuresTitle}</h3>
-            <ol className="ruled" style={{ margin: 0, padding: 0, listStyle: 'none' }}>
-              {s.features.map((f, i) => <li key={f} className="ruled__row" style={{ gridTemplateColumns: '32px 1fr', padding: '14px 0' }}><span className="ruled__num">{String(i + 1).padStart(2, '0')}</span><span className="ruled__text ruled__text--ink" style={{ fontSize: '.9375rem' }}>{f}</span></li>)}
-            </ol>
-          </Stack>
-          <Stack gap={14}><Label>Admin dashboard</Label><Frame image={s.image} label={s.imageLabel} height={520} /></Stack>
-        </div>
-      </Stack>
-    </Section>
-  );
-}
-
-export function Steps({ s }) {
-  return (
-    <Section alt size="sm">
-      <Stack gap={48}>
-        <SectionHead eyebrow={s.eyebrow} title={s.title} text={s.text} />
-        {s.tracks.map((t) => <StepTracker key={t.label} label={t.label} steps={t.steps} />)}
-      </Stack>
-    </Section>
-  );
-}
-
-export function DecisionsImpact({ s }) {
-  return (
-    <Section>
-      <div className="split split--rev">
-        <Stack gap={24}><Eyebrow>{s.left.eyebrow}</Eyebrow><h2 style={{ fontSize: 'clamp(1.75rem, 2.8vw, 2.5rem)' }}>{s.left.title}</h2><NumberedList items={s.left.items} /></Stack>
-        <Stack gap={24}>
-          <Eyebrow>{s.right.eyebrow}</Eyebrow><h2 style={{ fontSize: 'clamp(1.75rem, 2.8vw, 2.5rem)' }}>{s.right.title}</h2>
-          <p className="body body--sm">{s.right.text}</p>
-          <div className="grid grid--2" style={{ gap: 16 }}>{s.right.metrics.map((m) => <Metric key={m.label} m={m} />)}</div>
-        </Stack>
       </div>
     </Section>
   );

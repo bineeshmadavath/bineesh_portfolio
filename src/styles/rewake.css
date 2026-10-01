@@ -1,0 +1,63 @@
+/* Rewake Physio & Rehab case study — design tokens + scoped reset.
+   This file is plain CSS, not a second Tailwind build: Tailwind v4 emits @theme
+   variables at :root, so a second @theme with the same names would recolor Green
+   Eye. Instead the shared build in greeneye.css generates the utilities (the
+   Rewake files are listed in its @source), and every token below overrides the
+   theme variables inside .rw only. Rewake gets its own palette and shape with
+   zero bleed into Green Eye or the main portfolio.
+
+   Values sampled from the approved design screenshots (hero, 2026-10-01). */
+
+.rw {
+  /* Typography — Fraunces (display serif) + Plus Jakarta Sans, both loaded in index.html */
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: "Fraunces", Georgia, "Times New Roman", serif;
+
+  /* Brand — deep marine teal (#04708A sampled from CTAs, TOC active pill, links) */
+  --color-brand: #04708A;
+  --color-brand-dark: #06586C;
+  --color-brand-soft: #ECF9FC;  /* eyebrow pill bg, stat-chip icon circles */
+  --color-brand-tint: #F7FAFB;  /* page background */
+
+  /* Neutrals */
+  --color-surface: #FFFFFF;
+  --color-ink: #0C1113;
+  --color-ink-muted: #4F5D64;
+  --color-line: #E3EBEE;
+
+  /* Status — sampled from the Research section (emotion pills, goals/frustrations) */
+  --color-status-pending: #B45309;        /* amber — "Anxious" */
+  --color-status-pending-soft: #FBF1DE;
+  --color-status-resolved: #047857;       /* green — goals, "Relieved/Confident" */
+  --color-status-resolved-soft: #E6F6EF;
+  --color-status-rejected: #B91C1C;       /* red — frustrations */
+  --color-status-rejected-soft: #FDE4E4;
+  --color-status-info: #2B6399;
+  --color-status-info-soft: #E3EEF8;
+
+  /* Bright cyan accent (persona quote bar) */
+  --color-accent-bright: #05A9CE;
+
+  /* Deep teal-ink (IA tree "supporting section" pills) */
+  --color-brand-deep: #073F4E;
+
+  /* Shape */
+  --radius-card: 16px;
+  --radius-inner: 12px;
+  --radius-hero: 28px;
+}
+
+/* ── Motion demo keyframes (design-system section) ── */
+@keyframes rw-fade-up {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.rw .rw-fade-up { animation: rw-fade-up 600ms cubic-bezier(0, 0, 0.2, 1) both; }
+@media (prefers-reduced-motion: reduce) {
+  .rw .rw-fade-up { animation: none; }
+}
+
+/* NOTE: the .rw scoped reset lives in greeneye.css, next to the .ge reset.
+   It MUST sit before the generated utilities in the cascade — this file loads
+   after them, so a reset here would win specificity ties against utilities
+   (e.g. `.grid { gap: 0 }` would nullify every gap-* on the page). */

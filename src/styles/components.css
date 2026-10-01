@@ -69,7 +69,7 @@ a.card:hover { text-decoration: none; border-color: var(--border-2); }
 /* Stat strip */
 .stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); background: var(--card); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
 .stat { display: flex; flex-direction: column; align-items: center; gap: 10px; padding: clamp(24px, 3vw, 40px) clamp(16px, 2.4vw, 32px); border-right: 1px solid var(--border); text-align: center; }
-.stat:last-child { border-right: 0; padding-right: 0; }
+/* .stat:last-child { border-right: 0; padding-right: 0; } */
 .stat__num { font-family: var(--font-display); font-size: clamp(2.5rem, 4.4vw, 4rem); font-weight: 600; line-height: 1; letter-spacing: -0.02em; color: var(--ink); }
 .stat__num--down { color: var(--down); }
 .stat__num--up { color: var(--up); }

@@ -31,23 +31,25 @@ function FeaturedCard({ c }) {
 }
 
 // Photo background with a phone mockup rising from the bottom edge, as in the case study hero.
-function DeviceThumb({ thumb }) {
+function DeviceThumb({ thumb, prominent = false }) {
   return (
-    <div role="img" aria-label={thumb.label} style={{ position: 'relative', overflow: 'hidden', borderRadius: '20px', border: '1px solid var(--border)', background: 'var(--alt)', aspectRatio: '16 / 10' }}>
-      <img src={thumb.background} alt="" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', opacity: 0.9 }} />
-      <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, rgba(20,40,30,.15) 0%, rgba(20,40,30,.35) 50%, rgba(20,40,30,.55) 100%)' }} />
-      <div style={{ position: 'absolute', left: '50%', top: '12%', bottom: '-12%', transform: 'translateX(-50%)', width: '46%', borderRadius: '22px', border: '5px solid #fff', overflow: 'hidden', background: '#EEF7F0', boxShadow: '0 24px 48px -18px rgba(0,0,0,.5)' }}>
-        <img src={thumb.device} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top' }} />
-      </div>
+    <div role="img" aria-label={thumb.label} style={{ position: 'relative', overflow: 'hidden', borderRadius: '20px', border: '1px solid var(--border)', background: 'var(--alt)', aspectRatio: prominent ? '4 / 3' : '16 / 10' }}>
+      <img src={thumb.background} alt="" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', opacity: 0.95 }} />
+      <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, rgba(20,40,30,.12) 0%, rgba(20,40,30,.28) 55%, rgba(20,40,30,.42) 100%)' }} />
+      {thumb.device && (
+        <div style={{ position: 'absolute', left: '50%', top: '12%', bottom: '-12%', transform: 'translateX(-50%)', width: '46%', borderRadius: '22px', border: '5px solid #fff', overflow: 'hidden', background: '#EEF7F0', boxShadow: '0 24px 48px -18px rgba(0,0,0,.5)' }}>
+          <img src={thumb.device} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top' }} />
+        </div>
+      )}
     </div>
   );
 }
 
-function SmallCard({ c }) {
+function SmallCard({ c, prominent = false, muted = false }) {
   return (
     <Link to={c.href || `/work/${c.slug}`} className="card" style={{ gap: 20 }}>
-      {c.thumb ? <DeviceThumb thumb={c.thumb} /> : c.hero?.image ? (
-        <div style={{ overflow: 'hidden', borderRadius: '20px', border: '1px solid var(--border)', background: 'var(--alt)', aspectRatio: '16 / 10' }}>
+      {c.thumb ? <DeviceThumb thumb={c.thumb} prominent={prominent} /> : c.hero?.image ? (
+        <div style={{ overflow: 'hidden', borderRadius: '20px', border: '1px solid var(--border)', background: 'var(--alt)', aspectRatio: '4 / 3', opacity: muted ? 0.5 : 1 }}>
           <img src={c.hero.image} alt={c.hero.imageLabel || c.title} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
         </div>
       ) : null}
@@ -65,8 +67,8 @@ function SmallCard({ c }) {
 }
 
 export default function WorkGrid() {
-  const featured = caseStudies.find((c) => c.featured);
-  const rest = caseStudies.filter((c) => !c.featured);
+  const priority = caseStudies.filter((c) => c.prominent);
+  const muted = caseStudies.filter((c) => !c.prominent);
   return (
     <Section id="work">
       <div className="stack" style={{ '--stack-gap': '48px' }}>
@@ -78,8 +80,8 @@ export default function WorkGrid() {
           <Label>2020 — 2026</Label>
         </div>
         <div className="bento">
-          <FeaturedCard c={featured} />
-          {rest.map((c) => <SmallCard key={c.slug} c={c} />)}
+          {priority.map((c) => <SmallCard key={c.slug} c={c} prominent />)}
+          {muted.map((c) => <SmallCard key={c.slug} c={c} muted={c.muted} />)}
         </div>
       </div>
     </Section>

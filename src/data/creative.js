@@ -33,7 +33,7 @@ const motionVideos = [
 export const collections = [
   { id: 'paintings', eyebrow: '01 · Digital paintings', title: 'Digital Paintings', text: 'Character studies and colour experiments, painted digitally — light, skin and texture pushed as far as they will go.', count: `[${paintingImages.length} pieces]`, image: paintingImages[0], gallery: paintingImages, span: 2, height: 440, items: paintingImages.length },
   { id: 'scribbles', eyebrow: '02 · Scribbles', title: 'Scribbles', text: 'Random pen and digital sketches. Figures, gestures, anything that moves — done fast, to keep the hand honest.', count: `[${scribbleImages.length} pieces]`, image: scribbleImages[0], gallery: scribbleImages, span: 1, height: 440, items: scribbleImages.length },
-  { id: 'illustrations', eyebrow: '03 · Illustrations', title: 'Illustrations', text: 'Character and editorial illustration work — the storytelling side of the pencil.', count: `[${illustrationImages.length} pieces]`, image: illustrationImages[0], gallery: illustrationImages, span: 1, height: 360, items: illustrationImages.length },
+  { id: 'illustrations', eyebrow: '03 · Illustrations', title: 'Illustrations', text: 'Character and editorial illustration work — the storytelling side of the pencil.', count: `[${illustrationImages.length} pieces]`, image: illustrationImages[2], gallery: illustrationImages, span: 1, height: 360, items: illustrationImages.length },
   { id: 'motion', eyebrow: '04 · Stories in motion', title: 'Stories in Motion', text: 'Short animated stories, from the 2D animation years to recent motion experiments.', count: `[${motionVideos.length} films]`, image: motionThumbnail, gallery: motionVideos, span: 2, height: 360, items: motionVideos.length, video: true },
 ];
 

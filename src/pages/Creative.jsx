@@ -11,8 +11,8 @@ import { Button, Card, Eyebrow, Label, LinkArrow, Section, SectionHead } from '.
 function ArtCard({ c, onOpen }) {
   return (
     <button type="button" className={`art-card ${c.span === 2 ? 'span-2' : ''}`} onClick={() => onOpen(c)} aria-haspopup="dialog">
-      <div className="art-card__img" style={{ '--art-h': `${c.height}px` }}>
-        <img src={c.image} alt={`${c.title} — sample`} loading="lazy" />
+      <div className="art-card__img" style={{ '--art-h': `${c.height}px`, background: c.id === 'illustrations' ? '#fff' : undefined }}>
+        <img src={c.image} alt={`${c.title} — sample`} loading="lazy" style={{ objectFit: c.id === 'illustrations' ? 'contain' : 'cover' }} />
         {c.video && <div className="art-card__play" aria-hidden="true"><Play /></div>}
       </div>
       <div className="art-card__body">

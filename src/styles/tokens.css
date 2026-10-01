@@ -1,6 +1,7 @@
 /* Design tokens — light (stone / moss) and dark. One set of names, two values each. */
 :root {
   --bg: #EDEFE8;
+  --chrome-bg: #FFFFFF; /* header + footer chrome */
   --alt: #E2E6DC;
   --card: #FFFFFF;
   --border: #D5DACB;
@@ -37,6 +38,7 @@
 
 [data-theme="dark"] {
   --bg: #101412;
+  --chrome-bg: #101412;
   --alt: #161B18;
   --card: #1C2320;
   --border: #2A322D;

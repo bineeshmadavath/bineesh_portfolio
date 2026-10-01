@@ -6,11 +6,12 @@ export const caseStudies = [
   {
     slug: 'smartops',
     number: '01',
-    title: 'UST SmartOps / SmartVision',
+    title: 'Intelligent Document Processing Platform',
     category: 'Intelligent document processing',
     categoryShort: 'Intelligent document processing',
     summary: 'Re-architected the extraction and validation interface, cutting human-in-the-loop review time by a quarter.',
     featured: true,
+    muted: true,
     featuredMetrics: [
       { value: '−25%', label: 'Review time', tone: 'down' },
       { value: '−40%', label: 'Handoff time', tone: 'down' },
@@ -19,7 +20,7 @@ export const caseStudies = [
     featuredSummary: 'Re-architected the extraction and validation interface for an enterprise IDP platform — cutting human-in-the-loop review time by 25% and design-to-dev handoff by 40%, on a component library built for WCAG 2.1 AA.',
     tags: ['UX transformation', 'Design systems', 'Angular'],
     hero: {
-      eyebrow: 'Case study 01 · UST SmartOps / SmartVision · Intelligent document processing',
+      eyebrow: 'Case study 01 · Intelligent Document Processing Platform · Intelligent document processing',
       title: 'Business meaning, one click from the source — ',
       titleEm: 'without mixing facts and inferences.',
       lede: 'An AI inference layer for the document review screen that surfaces contextual business insights beside the extracted data reviewers already trust — clearly separated, explainable, and switchable off.',
@@ -82,6 +83,7 @@ export const caseStudies = [
     categoryShort: 'Civic tech',
     summary: 'A community-driven web app that lets citizens report littering in seconds, follow the cleanup, earn rewards and join local drives.',
     href: '/work/green-eye',
+    prominent: true,
     // Home-grid thumbnail mirrors the case study hero: landscape photo + phone mockup.
     thumb: {
       background: IMAGES.hero,
@@ -290,6 +292,8 @@ export const caseStudies = [
     takeaway: { text: 'The report button was never the hard part. Closing the loop — showing someone their report turned into a cleaner street — is what made people come ', em: 'back.', cta: 'Talk to me about civic products' },
     next: 'rewake',
   },
+  // Rewake renders a bespoke page (src/pages/CaseStudy-rewake.tsx) with its own
+  // tokens (src/styles/rewake.css); this entry only feeds the home grid and links.
   {
     slug: 'rewake',
     number: '03',
@@ -298,85 +302,13 @@ export const caseStudies = [
     categoryShort: 'Healthcare',
     summary: 'A mobile-first booking flow that helps patients book a physio session without an account, a callback, or confusion.',
     href: '/work/rewake',
+    prominent: true,
+    thumb: {
+      background: `${import.meta.env.BASE_URL}rewake/hero-clinic.jpg`,
+      device: null,
+      label: 'Rewake physiotherapy clinic session photo',
+    },
     tags: ['Healthcare UX', 'Booking flow', 'Responsive web'],
-    hero: {
-      eyebrow: 'Case study 03 · Healthcare experience',
-      title: 'A slow clinic process, redesigned into a ',
-      titleEm: 'calm booking journey.',
-      lede: 'Rewake needed a booking flow that felt trustworthy on a phone, respected the clinic workflow, and reduced admin friction without increasing the number of screens. This version stands on its own inside the portfolio and does not rely on the Rewake app codebase.',
-      image: null,
-      imageLabel: 'Rewake case study hero',
-      meta: [
-        { label: 'Role', value: 'Product design & front-end build', sub: 'UX, UI, interaction design, prototyping' },
-        { label: 'Platform', value: 'Responsive web', sub: 'Mobile-first patient flow + admin dashboard' },
-        { label: 'Stack', value: 'React 19 · Tailwind CSS', sub: 'Booking and clinic operations' },
-        { label: 'Context', value: 'Pandikkad, Kerala', sub: 'Single-clinic physiotherapy practice' },
-      ],
-    },
-    glance: {
-      problem: 'The clinic was still relying on calls, WhatsApp coordination and spreadsheet-based scheduling, which created confusion, missed bookings and slow follow-up.',
-      solution: 'A focused booking UX with live availability, a guided patient flow, and a clear confirmation step that matched how the clinic already works.',
-      impact: 'Patients can book with less friction, staff spend less time coordinating manually, and the clinic gets a cleaner, more reliable daily schedule.',
-    },
-    sections: [
-      { type: 'narrative-list', eyebrow: '01 — The problem', title: 'The manual booking process was creating friction for everyone.',
-        text: 'The original flow depended on phone calls and manual coordination. It worked until it did not: patients had to ask the right question in the right window, staff had to chase confirmations, and every booking needed a human to keep it in sync.',
-        items: ['No clear view of real availability', 'Patients could not book without calling during open hours', 'Staff had to keep track through multiple channels', 'Manual coordination created avoidable delays and errors', 'The booking experience did not feel dependable'] },
-      { type: 'group', alt: true, blocks: [
-        { type: 'cards', eyebrow: '02 — What mattered', title: 'Three goals for the redesign', cols: 3, cards: [
-          { label: 'Business goal', title: 'Reduce booking friction without adding clinic admin work.' },
-          { label: 'User goal', title: 'Let patients book from their phone in a few confident taps.' },
-          { label: 'Operations goal', title: 'Keep scheduling visible, reliable and easy to manage.' } ] },
-        { type: 'cards', eyebrow: '03 — Who it serves', cols: 4, cards: [
-          { label: 'Patients', title: 'Need a quick, low-stress way to confirm an appointment.', text: 'Especially from mobile when they are already busy.' },
-          { label: 'Clinic staff', title: 'Need clear bookings with less follow-up.', text: 'They need one source of truth for daily slots.' },
-          { label: 'Physios', title: 'Need a predictable schedule with fewer issues.', text: 'They should not spend time sorting manual overlaps.' },
-          { label: 'Owners', title: 'Need a faster path to conversion.', text: 'Without a chaotic back office process around it.' } ] }
-      ] },
-      { type: 'solution-hub', eyebrow: '04 — The solution', title: 'A small booking system designed to feel obvious', text: 'The redesign focused on a single outcome: help patients move from “I need an appointment” to “I’ve confirmed a slot” without uncertainty.',
-        tiles: [
-          ['Live slot data', 'Patients only see actual availability'],
-          ['Guided booking', 'Three steps with a clear summary before confirmation'],
-          ['Clinic visibility', 'Staff can track changes without spreadsheet chasing'],
-          ['WhatsApp confirmation', 'A channel patients already check more than email'],
-          ['Trustworthy flow', 'Low cognitive load and no account barrier']
-        ],
-        featuresTitle: 'Key experience principles',
-        features: ['Short booking flow', 'Clear slot selection', 'Visible confirmation', 'Mobile-first form design', 'Confidence-building copy', 'Operational clarity'],
-        image: null,
-        imageLabel: 'Rewake booking flow solution' },
-      { type: 'steps', alt: true, eyebrow: '05 — Journey', title: 'The booking path stays short on purpose.', text: 'Every step answers one question: what do I choose, is it valid, and what happens next?', tracks: [
-          { label: 'Patient flow', steps: [
-            ['Choose', 'Date and physio or any available physio'],
-            ['Pick', 'A valid time slot with live availability'],
-            ['Confirm', 'Name, phone and booking summary'],
-            ['Receive', 'Instant confirmation in a familiar channel']
-          ] },
-          { label: 'Clinic workflow', steps: [
-            ['Review', 'Daily bookings in one place'],
-            ['Filter', 'Check by date or physio'],
-            ['Resolve', 'Adjust or reschedule when needed'],
-            ['Notify', 'Send confirmation and keep the day on track']
-          ] }
-        ] },
-      { type: 'decisions-impact', left: { eyebrow: '06 — Design decisions', title: 'The biggest gains came from making the flow feel obvious.', items: [
-        ['Short path to booking', 'Every screen leads back to the same clear next step'],
-        ['Clear labels', 'The patient understands what each action means before committing'],
-        ['Visible confirmation', 'The chosen slot is summarised before the booking is final'],
-        ['Lower risk on mobile', 'The form is designed around small screens and one-handed use'],
-        ['Trust-building tone', 'The interface reassures patients without overloading them']
-      ] },
-        right: { eyebrow: '07 — Impact', title: 'What changed.', text: 'The redesign focused on speed, trust and operational clarity for a small clinic with busy hands-on staff.', metrics: [
-          { value: '3 steps', label: 'patient booking flow', text: 'From initial click to confirmed slot', tone: 'up' },
-          { value: '0 sign-ups', label: 'required before booking', text: 'No account barrier or password friction', tone: 'neutral' },
-          { value: 'Live', label: 'availability', text: 'Time slots are shown as they really are', tone: 'up' },
-          { value: 'WhatsApp', label: 'confirmation channel', text: 'A familiar, trusted communication path', tone: 'neutral' }
-        ] } },
-      { type: 'narrative-list', eyebrow: '08 — Takeaway', title: 'The real challenge was not filling the booking form — it was reducing uncertainty.',
-        text: 'Once the patient could see likely availability, commit to a clear slot, and understand the confirmation step, the clinic workflow suddenly became calmer for both patients and staff. The experience stopped asking people to trust the process and instead made the process easy to trust.',
-        items: ['Healthcare booking flows need clarity more than complexity', 'A short, credible path feels safer than a wider, ambiguous one', 'Operational tools are most effective when they disappear into the background'] }
-    ],
-    takeaway: { text: 'Rewake was never just a booking page — it was a healthcare access problem disguised as a form. The redesign made the entire journey feel ', em: 'clear, quick and trustworthy.', cta: 'Talk to me about healthcare product design' },
     next: 'smartops',
   },
 ];

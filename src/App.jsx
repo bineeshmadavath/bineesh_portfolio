@@ -4,6 +4,7 @@ import Layout from './components/layout/Layout';
 import Home from './pages/Home';
 import CaseStudy from './pages/CaseStudy';
 import GreenEyeCaseStudy from './pages/CaseStudy-greenEye';
+import RewakeCaseStudy from './pages/CaseStudy-rewake';
 import Creative from './pages/Creative';
 import Contact from './pages/Contact';
 import Resume from './pages/Resume';
@@ -18,8 +19,8 @@ export default function App() {
           <Route element={<Layout />}>
             <Route index element={<Home />} />
             <Route path="work/green-eye" element={<GreenEyeCaseStudy />} />
-            <Route path="work/rewake" element={<CaseStudy slugOverride="rewake" />} />
-            <Route path="work/rewake-physio" element={<CaseStudy slugOverride="rewake" />} />
+            <Route path="work/rewake" element={<RewakeCaseStudy />} />
+            <Route path="work/rewake-physio" element={<RewakeCaseStudy />} />
             <Route path="work/:slug" element={<CaseStudy />} />
             <Route path="creative" element={<Creative />} />
             <Route path="contact" element={<Contact />} />

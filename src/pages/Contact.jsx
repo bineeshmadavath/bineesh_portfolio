@@ -17,8 +17,8 @@ export default function Contact() {
     ...profile.socials.filter((s) => !['GitHub', 'X'].includes(s.label)).map((s) => [s.label, s.handle, s.href]),
   ];
   const here = [
-    { label: "While you're here · 01", title: `${caseStudies[0].title} — AI inference review`, to: `/work/${caseStudies[0].slug}` },
-    { label: "While you're here · 02", title: `${caseStudies[1].title} — civic engagement platform`, to: `/work/${caseStudies[1].slug}` },
+    { label: "While you're here · 01", title: `${caseStudies[0].title} — AI inference review`, to: caseStudies[0].href || `/work/${caseStudies[0].slug}` },
+    { label: "While you're here · 02", title: `${caseStudies[1].title} — civic engagement platform`, to: caseStudies[1].href || `/work/${caseStudies[1].slug}` },
     { label: "While you're here · 03", title: 'Creative works — paintings and motion', to: '/creative' },
   ];
   return (

@@ -124,6 +124,20 @@ function ArticleSpecimen() {
 /* ───────────────────────── page ───────────────────────── */
 
 export default function CaseStudy() {
+  const [active, setActive] = React.useState(TOC[0].id);
+
+  React.useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => entries.forEach((entry) => { if (entry.isIntersecting) setActive(entry.target.id); }),
+      { rootMargin: '-40% 0px -55% 0px' },
+    );
+    TOC.forEach((item) => {
+      const element = document.getElementById(item.id);
+      if (element) observer.observe(element);
+    });
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <div className="ge pb-20">
       {/* ── Hero ── */}
@@ -165,7 +179,22 @@ export default function CaseStudy() {
       <nav className="sticky top-[84px] z-10 bg-brand-tint/90 backdrop-blur border-b border-line mt-10">
         <div className="max-w-6xl mx-auto px-4 md:px-6 flex gap-2 overflow-x-auto py-3 scrollbar-hide">
           {TOC.map((t) => (
-            <a key={t.id} href={`#${t.id}`} className="shrink-0 px-3.5 py-1.5 rounded-full bg-white border border-line text-[13px] font-medium text-ink-muted hover:text-brand hover:border-brand transition-colors">
+            <a
+              key={t.id}
+              href={`#${t.id}`}
+              aria-current={active === t.id ? 'location' : undefined}
+              onClick={(event) => {
+                event.preventDefault();
+                setActive(t.id);
+                document.getElementById(t.id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              }}
+              className={cn(
+                'shrink-0 px-3.5 py-1.5 rounded-full text-[13px] font-medium transition-colors',
+                active === t.id
+                  ? 'bg-brand text-white shadow-[0_6px_16px_-8px_rgba(46,158,79,0.7)]'
+                  : 'bg-white border border-line text-ink-muted hover:text-brand hover:border-brand',
+              )}
+            >
               {t.label}
             </a>
           ))}
