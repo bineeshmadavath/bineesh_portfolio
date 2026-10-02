@@ -118,8 +118,7 @@ export const storyboards = {
     {
       label: 'Big picture',
       sketchTitle: 'Storyboard · Big picture — Shameera books her first session',
-      // Hand-drawn sketch goes here: drop the file and set e.g. `${BASE}rewake/storyboard-big-picture.png`
-      image: null as string | null,
+      image: `${BASE}rewake/sb-bigPicture.png`,
       imageLabel: 'Six-panel storyboard: Shameera books her first session',
       steps: [
         'Shameera twists her knee on the school stairs during a break.',
@@ -133,7 +132,7 @@ export const storyboards = {
     {
       label: 'Close-up',
       sketchTitle: 'Storyboard · Close-up — one thumb, five screens, one booking',
-      image: null as string | null,
+      image: `${BASE}rewake/sb-closeUp.png`,
       imageLabel: 'Six-panel storyboard: the thumb journey through the booking flow',
       steps: [
         'Her thumb taps the raised Book button in the centre of the bottom nav.',

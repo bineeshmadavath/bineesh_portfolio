@@ -9,6 +9,7 @@ import { IMAGES } from '../lib/images';
 import { Button, Card, IconBadge, Pill, SectionHeader, StatChip, StepItem } from '../components/ui';
 import ScreenFlow from '../components/phone/ScreenFlow';
 import { mobileFlow } from '../components/phone/PhoneScreens';
+import NextCaseStudy from '../components/case/NextCaseStudy';
 import {
   meta, overview, research, painPoints, persona, journey, architecture, storyboards, usabilityFindings, desktopScreen,
   colorGroups, overlays, typeScale, spacing, radii, shadows, motion, breakpoints, patterns,
@@ -809,6 +810,7 @@ export default function CaseStudy() {
           </Card>
         </Section>
       </div>
+      <NextCaseStudy currentSlug="greeneye" />
     </div>
   );
 }

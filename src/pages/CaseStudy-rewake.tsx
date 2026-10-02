@@ -9,6 +9,7 @@ import { accessibility, architecture, designSystem, findings, meta, overview, re
 import { ComponentSpecimens, DesktopCapture, MobileJourney } from '../components/rewake/Screens';
 import DesignSystemContent from '../components/rewake/DesignSystem';
 import AccessibilityContent from '../components/rewake/Accessibility';
+import NextCaseStudy from '../components/case/NextCaseStudy';
 
 /* Rewake Physio & Rehab — bespoke case study page (same pattern as Green Eye).
    Tokens live in src/styles/rewake.css, scoped under .rw; utilities are
@@ -542,6 +543,7 @@ export default function RewakeCaseStudy() {
           </div>
         </div>
       </Band>
+      <NextCaseStudy currentSlug="rewake" />
     </div>
   );
 }

@@ -64,12 +64,12 @@ export default function ContactForm() {
       <div className="contact-form__fields">
         <div className="field">
           <label className="label" htmlFor="c-name">Your name</label>
-          <input id="c-name" name="name" autoComplete="name" value={values.name} onChange={set('name')} aria-invalid={!!errors.name} aria-describedby={errors.name ? 'c-name-err' : undefined} placeholder="Priya Nair" />
+          <input id="c-name" name="name" autoComplete="name" value={values.name} onChange={set('name')} aria-invalid={!!errors.name} aria-describedby={errors.name ? 'c-name-err' : undefined} placeholder="John Doe" />
           {errors.name && <div id="c-name-err" className="field__error">{errors.name}</div>}
         </div>
         <div className="field">
           <label className="label" htmlFor="c-email">Email</label>
-          <input id="c-email" name="email" type="email" autoComplete="email" value={values.email} onChange={set('email')} aria-invalid={!!errors.email} aria-describedby={errors.email ? 'c-email-err' : undefined} placeholder="priya@company.com" />
+          <input id="c-email" name="email" type="email" autoComplete="email" value={values.email} onChange={set('email')} aria-invalid={!!errors.email} aria-describedby={errors.email ? 'c-email-err' : undefined} placeholder="john.doe@company.com" />
           {errors.email && <div id="c-email-err" className="field__error">{errors.email}</div>}
         </div>
         <div className="field field--wide">
