@@ -16,7 +16,8 @@ import './NodePortrait.css';
  */
 export default function NodePortrait({
   align = 'right',      // 'left' | 'center' | 'right'
-  fill = 0.95,          // portrait height as a share of the hero height
+  valign = 'top',       // 'top' | 'bottom'
+  fill = 0.855,         // portrait height as a share of the hero height
   offsetX = -0.06,      // nudge as a share of hero width (negative = move left)
   radius = 80,          // cursor influence radius, in portrait units (600 wide)
   force = 2.6,          // push/pull strength
@@ -45,12 +46,12 @@ export default function NodePortrait({
     load.then(({ default: mesh }) => {
       if (cancelled || !canvasRef.current) return;
       cleanup = start(canvasRef.current, mesh, {
-        align, fill, offsetX, radius, force, attract, spring, damping, dotRadius, lineAlpha, intro,
+        align, valign, fill, offsetX, radius, force, attract, spring, damping, dotRadius, lineAlpha, intro,
       });
     });
 
     return () => { cancelled = true; cleanup(); };
-  }, [dark, align, fill, offsetX, radius, force, attract, spring, damping, dotRadius, lineAlpha, intro]);
+  }, [dark, align, valign, fill, offsetX, radius, force, attract, spring, damping, dotRadius, lineAlpha, intro]);
 
   return <canvas ref={canvasRef} className={`node-portrait ${className}`} aria-hidden="true" />;
 }
@@ -86,7 +87,7 @@ function start(cv, mesh, o) {
   const heat = new Float32Array(N), phase = new Float32Array(N);
   for (let i = 0; i < N; i++) phase[i] = Math.random() * Math.PI * 2;
 
-  // ---- layout: fit the portrait into the canvas, anchored to the bottom
+  // ---- layout: fit the portrait into the canvas, anchored to the top (or bottom)
   let dpr = 1, s = 1, ox = 0, oy = 0, rect = cv.getBoundingClientRect();
   const layout = () => {
     rect = cv.getBoundingClientRect();
@@ -97,7 +98,7 @@ function start(cv, mesh, o) {
     const pw = W * s;
     ox = o.align === 'left' ? 0 : o.align === 'center' ? (rect.width - pw) / 2 : rect.width - pw;
     ox += o.offsetX * rect.width;
-    oy = rect.height - H * s;
+    oy = o.valign === 'bottom' ? rect.height - H * s : 0;
   };
   const ro = new ResizeObserver(layout);
   ro.observe(cv);
