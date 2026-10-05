@@ -27,7 +27,7 @@ export default function Nav() {
     <header className="site-header">
       <nav className="container nav" aria-label="Primary">
         <div className="nav__brand-group">
-          <Link to="/" className="nav__brand"><img src="/images/logo.svg" alt="" className="nav__logo" width="42" height="42" />{profile.name}</Link>
+          <Link to="/" className="nav__brand"><img src={`${import.meta.env.BASE_URL}images/logo.svg`} alt="" className="nav__logo" width="42" height="42" />{profile.name}</Link>
         </div>
         <div className="nav__links">
           {links.map((l) => (
