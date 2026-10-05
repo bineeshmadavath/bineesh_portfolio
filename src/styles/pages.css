@@ -20,7 +20,9 @@
 .case-hero__title { font-size: clamp(2.4rem, 5.3vw, 4.75rem); }
 .case-hero__meta { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(20px, 3vw, 40px); padding-top: 32px; border-top: 1px solid var(--border); }
 .case-hero__meta > div { display: flex; flex-direction: column; gap: 8px; }
-.back-link { display: inline-flex; align-items: center; gap: 8px; align-self: flex-start; font-family: var(--font-mono); font-size: .75rem; letter-spacing: .12em; text-transform: uppercase; color: var(--caption); }
+.back-link { display: inline-flex; align-items: center; gap: 8px; align-self: flex-start; font-family: var(--font-mono); font-size: .75rem; font-weight: 400; line-height: 1.6; letter-spacing: .12em; text-transform: uppercase; font-feature-settings: normal; color: var(--caption); text-decoration: none; }
+.back-link:hover, .ge .back-link:hover, .rw .back-link:hover { color: var(--caption); text-decoration: underline; text-underline-offset: 3px; }
+.back-link svg { display: inline-block; flex-shrink: 0; }
 @media (max-width: 1023px) { .case-hero__grid { grid-template-columns: minmax(0, 1fr); } .case-hero__meta { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 480px) { .case-hero__meta { grid-template-columns: minmax(0, 1fr); } }
 

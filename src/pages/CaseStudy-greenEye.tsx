@@ -9,6 +9,7 @@ import { IMAGES } from '../lib/images';
 import { Button, Card, IconBadge, Pill, SectionHeader, StatChip, StepItem } from '../components/ui';
 import ScreenFlow from '../components/phone/ScreenFlow';
 import { mobileFlow } from '../components/phone/PhoneScreens';
+import BackLink from '../components/layout/BackLink';
 import NextCaseStudy from '../components/case/NextCaseStudy';
 import {
   meta, overview, research, painPoints, persona, journey, architecture, storyboards, usabilityFindings, desktopScreen,
@@ -140,9 +141,10 @@ export default function CaseStudy() {
   }, []);
 
   return (
-    <div className="ge pb-20">
+    <div className="ge">
       {/* ── Hero ── */}
-      <header className="w-full max-w-6xl mx-auto px-4 md:px-6 pt-6 md:pt-10">
+      <header className="w-full max-w-[var(--maxw)] mx-auto px-[var(--gutter)] pt-[clamp(40px,5vw,72px)]">
+        <BackLink className="mb-[clamp(32px,4vw,56px)]" />
         <Card padding="none" className="overflow-hidden grid grid-cols-1 lg:grid-cols-[1.05fr_1fr]">
           <div className="p-7 md:p-12 flex flex-col justify-center">
             <Pill tone="brand" className="self-start mb-5">Case study · 2025</Pill>
@@ -178,7 +180,7 @@ export default function CaseStudy() {
 
       {/* ── Sticky TOC ── */}
       <nav className="sticky top-[84px] z-10 bg-brand-tint/90 backdrop-blur border-b border-line mt-10">
-        <div className="max-w-6xl mx-auto px-4 md:px-6 flex gap-2 overflow-x-auto py-3 scrollbar-hide">
+        <div className="max-w-[var(--maxw)] mx-auto px-[var(--gutter)] flex gap-2 overflow-x-auto py-3 scrollbar-hide">
           {TOC.map((t) => (
             <a
               key={t.id}
@@ -202,7 +204,7 @@ export default function CaseStudy() {
         </div>
       </nav>
 
-      <div className="max-w-6xl mx-auto px-4 md:px-6">
+      <div className="max-w-[var(--maxw)] mx-auto px-[var(--gutter)]">
 
         {/* ── Overview ── */}
         <Section id="overview" eyebrow="Project overview" title="A faster way to get litter off the street" subtitle={overview}>
@@ -810,7 +812,7 @@ export default function CaseStudy() {
           </Card>
         </Section>
       </div>
-      <NextCaseStudy currentSlug="greeneye" />
+      <NextCaseStudy currentSlug="greeneye" className="case-next--flush-top" />
     </div>
   );
 }

@@ -117,7 +117,7 @@ export function StepTracker({ label, steps }) {
 export function Stats({ items }) {
   return (
     <div className="container">
-      <dl className="stats" style={{ margin: 0 }}>
+      <dl className="stats" style={{ margin: 0, '--stats-cols': items.length }}>
         {items.map((s) => (
           <div key={s.label} className="stat">
             <dd className={`stat__num ${s.tone === 'down' ? 'stat__num--down' : ''} ${s.tone === 'up' ? 'stat__num--up' : ''}`} style={{ margin: 0, color: s.tone === 'accent' ? 'var(--accent)' : undefined }}>{s.value}</dd>

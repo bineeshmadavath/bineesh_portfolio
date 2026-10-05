@@ -9,6 +9,7 @@ import { accessibility, architecture, designSystem, findings, meta, overview, re
 import { ComponentSpecimens, DesktopCapture, MobileJourney } from '../components/rewake/Screens';
 import DesignSystemContent from '../components/rewake/DesignSystem';
 import AccessibilityContent from '../components/rewake/Accessibility';
+import BackLink from '../components/layout/BackLink';
 import NextCaseStudy from '../components/case/NextCaseStudy';
 
 /* Rewake Physio & Rehab — bespoke case study page (same pattern as Green Eye).
@@ -24,7 +25,7 @@ function Band({
 }: { id?: string; tone?: 'white' | 'tint'; className?: string; children: React.ReactNode }) {
   return (
     <section id={id} className={cn('scroll-mt-36', tone === 'white' ? 'bg-white' : 'bg-brand-tint', className)}>
-      <div className="max-w-6xl mx-auto px-4 md:px-6 py-14 md:py-20">{children}</div>
+      <div className="max-w-[var(--maxw)] mx-auto px-[var(--gutter)] py-14 md:py-20">{children}</div>
     </section>
   );
 }
@@ -168,7 +169,8 @@ export default function RewakeCaseStudy() {
   return (
     <div className="rw">
       {/* ── Hero ── */}
-      <header className="w-full max-w-6xl mx-auto px-4 md:px-6 pt-8 md:pt-12">
+      <header className="w-full max-w-[var(--maxw)] mx-auto px-[var(--gutter)] pt-[clamp(40px,5vw,72px)]">
+        <BackLink className="mb-[clamp(32px,4vw,56px)]" />
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-10 items-stretch">
           {/* Left — copy */}
           <div className="flex flex-col justify-center">
@@ -219,7 +221,7 @@ export default function RewakeCaseStudy() {
 
       {/* ── Sticky TOC ── */}
       <nav className="sticky top-[84px] z-10 bg-brand-tint/90 backdrop-blur border-b border-line/70 mt-14">
-        <div className="max-w-6xl mx-auto px-4 md:px-6 flex gap-2.5 overflow-x-auto py-3 scrollbar-hide">
+        <div className="max-w-[var(--maxw)] mx-auto px-[var(--gutter)] flex gap-2.5 overflow-x-auto py-3 scrollbar-hide">
           {TOC.map((t) => (
             <a
               key={t.id}

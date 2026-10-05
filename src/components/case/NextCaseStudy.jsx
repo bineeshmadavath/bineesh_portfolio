@@ -2,14 +2,14 @@ import { Link } from 'react-router-dom';
 import { getCaseStudy } from '../../data/caseStudies';
 import { ArrowRight } from '../ui/Icons';
 
-export default function NextCaseStudy({ currentSlug }) {
+export default function NextCaseStudy({ currentSlug, className = '' }) {
   const current = getCaseStudy(currentSlug);
   const next = current?.next ? getCaseStudy(current.next) : null;
 
   if (!next) return null;
 
   return (
-    <section className="case-next" aria-label="Next case study">
+    <section className={`case-next ${className}`.trim()} aria-label="Next case study">
       <Link className="case-next__link" to={next.href || `/work/${next.slug}`}>
         <span className="case-next__copy">
           <span className="case-next__eyebrow">Next case study · {next.number}</span>

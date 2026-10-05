@@ -20,7 +20,7 @@ export const caseStudies = [
     featuredSummary: 'Re-architected the extraction and validation interface for an enterprise IDP platform — cutting human-in-the-loop review time by 25% and design-to-dev handoff by 40%, on a component library built for WCAG 2.1 AA.',
     tags: ['UX transformation', 'Design systems', 'Angular'],
     hero: {
-      eyebrow: 'Case study 01 · Intelligent Document Processing Platform · Intelligent document processing',
+      eyebrow: 'Case study 01 · Intelligent Document Processing Platform',
       title: 'Business meaning, one click from the source — ',
       titleEm: 'without mixing facts and inferences.',
       lede: 'An AI inference layer for the document review screen that surfaces contextual business insights beside the extracted data reviewers already trust — clearly separated, explainable, and switchable off.',
@@ -67,12 +67,12 @@ export const caseStudies = [
         callout: { label: 'Edge', title: 'Empty state: "No inference available"', text: 'When the backend returns nothing, the system says so explicitly — never silently. Extraction stays untouched, and reviewers keep their confidence that an absent inference means "not configured", not "nothing wrong".' } },
       { type: 'numbered', alt: true, eyebrow: '06 — Design principles', title: 'Five rules the interface never breaks.', items: [
           ['Progressive disclosure', 'Summary first; detail on demand, to reduce cognitive load'], ['Contextual placement', 'Inference lives beside its evidence, never in a separate panel'], ['Visual hierarchy', 'Extraction first; inference second, with clear separation'], ['Explainable AI', 'Every inference shows the evidence it was drawn from'], ['Non-intrusive enhancement', 'Nothing about the existing review path changes if inference is off'] ] },
-      { type: 'metrics', eyebrow: '07 — What we measure', title: "Success, in the reviewer's numbers and the business's.",
+      { type: 'metrics', hidden: true, eyebrow: '07 — What we measure', title: "Success, in the reviewer's numbers and the business's.",
         text: 'Baseline and post-release figures to be filled from the SmartVision analytics once the feature has been live for a full review cycle.',
         metrics: [ { value: '[−XX%]', label: 'Manual interpretation time', tone: 'down' }, { value: '[−XX%]', label: 'Downstream validation effort', tone: 'down' }, { value: '[+XX%]', label: 'Inference adoption rate', tone: 'up' }, { value: '[+XX]', label: 'Trust score in AI outputs', tone: 'up' } ],
         also: [ { label: 'Also tracked · business', text: 'Faster document review turnaround · Higher reviewer productivity · Reduced compliance misses' }, { label: 'Also tracked · UX', text: 'Reduced reviewer confusion · Fewer support queries about flagged items · Time-to-first-inference-open' } ] },
     ],
-    takeaway: { text: 'The hard part of "AI in the workflow" wasn\'t the AI. It was making sure reviewers could always tell a fact from a ', em: 'guess.', cta: 'Talk to me about AI review workflows' },
+    takeaway: { hidden: true, text: 'The hard part of "AI in the workflow" wasn\'t the AI. It was making sure reviewers could always tell a fact from a ', em: 'guess.', cta: 'Talk to me about AI review workflows' },
     next: 'greeneye',
   },
   {

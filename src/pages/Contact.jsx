@@ -4,6 +4,7 @@ import { caseStudies } from '../data/caseStudies';
 import { useParallax } from '../hooks/useParallax';
 import { useDocumentTitle } from '../hooks/useDocumentTitle';
 import HeroBackground from '../components/layout/HeroBackground';
+import BackLink from '../components/layout/BackLink';
 import ContactForm from '../components/contact/ContactForm';
 import { ArrowDiag, ArrowRight } from '../components/ui/Icons';
 import { ArrowList, Eyebrow, Label, LinkArrow, Section } from '../components/ui/Primitives';
@@ -25,7 +26,8 @@ export default function Contact() {
     <>
       <section className="hero" onMouseMove={onMove} onMouseLeave={onLeave}>
         <HeroBackground layer={layer} />
-        <div className="container hero__content stack" style={{ '--stack-gap': '32px', paddingTop: 'clamp(64px, 8vw, 112px)', paddingBottom: 'clamp(40px, 5vw, 72px)' }}>
+        <div className="container hero__content stack" style={{ '--stack-gap': '32px', paddingTop: 'clamp(40px, 5vw, 72px)', paddingBottom: 'clamp(40px, 5vw, 72px)' }}>
+          <BackLink />
           <div className="pill" style={{ alignSelf: 'flex-start' }}><span className="pill__dot" aria-hidden="true" />Open to roles and select engagements · {profile.timezone}</div>
           <h1 style={{ maxWidth: 1000 }}>Have a product that needs both the design <em className="em">and</em> the code?</h1>
           <p className="lede">Tell me what you're building and where it's stuck. I read everything, and I reply within two working days.</p>

@@ -1,17 +1,16 @@
 import { profile } from '../../data/profile';
 import { useParallax } from '../../hooks/useParallax';
-import { useTheme } from '../../context/ThemeContext';
 import HeroBackground from '../layout/HeroBackground';
+import NodePortrait from '../NodePortrait/NodePortrait';
 import { Eyebrow, Label, LinkArrow } from '../ui/Primitives';
 
 export default function Hero() {
   const { onMove, onLeave, layer } = useParallax();
-  const { theme } = useTheme();
-  const portrait = `${import.meta.env.BASE_URL}images/portrait-${theme === 'dark' ? 'light' : 'dark'}.png`;
   const h = profile.headline;
   return (
     <section className="hero" onMouseMove={onMove} onMouseLeave={onLeave}>
-      <HeroBackground layer={layer} ring portrait={portrait} />
+      <HeroBackground layer={layer} ring />
+      <NodePortrait />
       <div className="container home-hero hero__content">
         <div className="stack" style={{ '--stack-gap': '28px', maxWidth: 1000 }}>
           <Eyebrow>{profile.role} · {profile.location}</Eyebrow>

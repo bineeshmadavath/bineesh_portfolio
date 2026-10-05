@@ -1,7 +1,7 @@
 export const resume = {
   tagline: 'UX strategy & UI development, with AI-augmented design systems.',
   updated: 'Updated Sep 2026',
-  stats: [ { value: '15+', label: 'Years in IT, design & front-end', tone: 'neutral' }, { value: '8+', label: 'Years leading enterprise UX for AI platforms', tone: 'neutral' }, { value: '−35%', label: 'Operational processing cost, Equifax migration', tone: 'down' }, { value: '3', label: 'Anthropic certifications', tone: 'accent' } ],
+  stats: [ { value: '15+', label: 'Years in IT, design & front-end', tone: 'neutral' }, { value: '8+', label: 'Years leading enterprise UX for AI platforms', tone: 'neutral' }, { value: '3', label: 'Anthropic certifications', tone: 'accent' } ],
   summary: [
     { title: 'Enterprise UX for AI platforms', text: '15+ years in IT and 8+ years leading enterprise UX for AI-driven platforms, specialising in design systems and AI-augmented product workflows.' },
     { title: 'AI in the workflow, not on the side', text: 'Hands-on with Claude, Gemini, MCP and Figma Make to embed AI directly into design and development workflows — backed by three Anthropic certifications.' },

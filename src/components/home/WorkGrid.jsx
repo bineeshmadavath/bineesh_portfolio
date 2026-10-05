@@ -33,7 +33,7 @@ function FeaturedCard({ c }) {
 // Photo background with a phone mockup rising from the bottom edge, as in the case study hero.
 function DeviceThumb({ thumb, prominent = false }) {
   return (
-    <div role="img" aria-label={thumb.label} style={{ position: 'relative', overflow: 'hidden', borderRadius: '20px', border: '1px solid var(--border)', background: 'var(--alt)', aspectRatio: prominent ? '4 / 3' : '16 / 10' }}>
+    <div role="img" aria-label={thumb.label} style={{ position: 'relative', overflow: 'hidden', borderRadius: '8px', border: '1px solid var(--border)', background: 'var(--alt)', aspectRatio: prominent ? '4 / 3' : '16 / 10' }}>
       <img src={thumb.background} alt="" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', opacity: 0.95 }} />
       <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, rgba(20,40,30,.12) 0%, rgba(20,40,30,.28) 55%, rgba(20,40,30,.42) 100%)' }} />
       {thumb.device && (
@@ -49,7 +49,7 @@ function SmallCard({ c, prominent = false, muted = false }) {
   return (
     <Link to={c.href || `/work/${c.slug}`} className="card" style={{ gap: 20 }}>
       {c.thumb ? <DeviceThumb thumb={c.thumb} prominent={prominent} /> : c.hero?.image ? (
-        <div style={{ overflow: 'hidden', borderRadius: '20px', border: '1px solid var(--border)', background: 'var(--alt)', aspectRatio: '4 / 3', opacity: muted ? 0.5 : 1 }}>
+        <div style={{ overflow: 'hidden', borderRadius: '8px', border: '1px solid var(--border)', background: 'var(--alt)', aspectRatio: '4 / 3', opacity: muted ? 0.5 : 1 }}>
           <img src={c.hero.image} alt={c.hero.imageLabel || c.title} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
         </div>
       ) : null}

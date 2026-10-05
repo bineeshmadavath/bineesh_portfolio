@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
-import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
+import { Link, NavLink, useLocation } from 'react-router-dom';
 import { profile } from '../../data/profile';
 import ThemeToggle from './ThemeToggle';
-import { Close, Menu, ArrowLeft } from '../ui/Icons';
+import { Close, Menu } from '../ui/Icons';
 
 const links = [
   { to: '/', label: 'Work', end: true },
@@ -13,8 +13,6 @@ const links = [
 export default function Nav() {
   const [open, setOpen] = useState(false);
   const { pathname } = useLocation();
-  const navigate = useNavigate();
-  const isHome = pathname === '/';
   useEffect(() => { setOpen(false); }, [pathname]);
   useEffect(() => {
     if (!open) return;
@@ -29,17 +27,7 @@ export default function Nav() {
     <header className="site-header">
       <nav className="container nav" aria-label="Primary">
         <div className="nav__brand-group">
-          {!isHome && (
-            <button
-              type="button"
-              className="nav__back"
-              onClick={() => navigate(-1)}
-              aria-label="Go back"
-            >
-              <ArrowLeft />
-            </button>
-          )}
-          <Link to="/" className="nav__brand">{profile.name}</Link>
+          <Link to="/" className="nav__brand"><img src="/images/logo.svg" alt="" className="nav__logo" width="42" height="42" />{profile.name}</Link>
         </div>
         <div className="nav__links">
           {links.map((l) => (

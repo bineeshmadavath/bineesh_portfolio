@@ -3,6 +3,7 @@ import { resume } from '../data/resume';
 import { useParallax } from '../hooks/useParallax';
 import { useDocumentTitle } from '../hooks/useDocumentTitle';
 import HeroBackground from '../components/layout/HeroBackground';
+import BackLink from '../components/layout/BackLink';
 import Band from '../components/layout/Band';
 import { Print } from '../components/ui/Icons';
 import { Button, Eyebrow, Label, Section, SectionHead, Stats, Tags } from '../components/ui/Primitives';
@@ -18,7 +19,8 @@ export default function Resume() {
     <>
       <section className="hero" onMouseMove={onMove} onMouseLeave={onLeave}>
         <HeroBackground layer={layer} />
-        <div className="container resume-hero hero__content">
+        <div className="container resume-hero hero__content" style={{ paddingTop: 'clamp(40px, 5vw, 72px)' }}>
+          <BackLink />
           <div className="resume-hero__top">
             <div className="stack" style={{ '--stack-gap': '22px', maxWidth: 900 }}>
               <Eyebrow>Resume · {profile.role} · {profile.company} · {profile.location}</Eyebrow>
@@ -34,7 +36,7 @@ export default function Resume() {
             <a href={`mailto:${profile.email}`}>{profile.email}</a>
             <span>{profile.phone}</span>
             <span>{profile.location} · IST</span>
-            {profile.socials.slice(0, 2).map((s) => <a key={s.label} href={s.href} target="_blank" rel="noreferrer">{s.label}</a>)}
+            {profile.socials.filter((s) => s.label === 'LinkedIn').map((s) => <a key={s.label} href={s.href} target="_blank" rel="noreferrer">{s.label}</a>)}
           </div>
         </div>
       </section>
