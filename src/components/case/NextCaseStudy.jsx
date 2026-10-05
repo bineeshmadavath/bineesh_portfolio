@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import CaseLink from './CaseLink';
 import { getCaseStudy } from '../../data/caseStudies';
 import { ArrowRight } from '../ui/Icons';
 
@@ -10,14 +10,14 @@ export default function NextCaseStudy({ currentSlug, className = '' }) {
 
   return (
     <section className={`case-next ${className}`.trim()} aria-label="Next case study">
-      <Link className="case-next__link" to={next.href || `/work/${next.slug}`}>
+      <CaseLink caseStudy={next} className="case-next__link">
         <span className="case-next__copy">
-          <span className="case-next__eyebrow">Next case study · {next.number}</span>
+          <span className="case-next__eyebrow">Next case study · {next.number}{next.locked && ' · Locked'}</span>
           <span className="case-next__title">{next.title}</span>
           <span className="case-next__category">{next.category}</span>
         </span>
-        <span className="case-next__action">View case study <ArrowRight /></span>
-      </Link>
+        <span className="case-next__action">{next.locked ? 'Request access' : 'View case study'} <ArrowRight /></span>
+      </CaseLink>
     </section>
   );
 }

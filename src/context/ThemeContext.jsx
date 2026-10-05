@@ -2,11 +2,14 @@ import { createContext, useCallback, useContext, useEffect, useMemo, useState } 
 
 const ThemeContext = createContext({ theme: 'light', toggle: () => {} });
 
+// Light is the default; dark only when the visitor has picked it with the toggle.
+// (New key so earlier auto-detected 'dark' values saved under 'theme' are ignored.)
+const STORAGE_KEY = 'theme-choice';
+
 const getInitial = () => {
   try {
-    const saved = localStorage.getItem('theme');
-    if (saved === 'light' || saved === 'dark') return saved;
-    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    const saved = localStorage.getItem(STORAGE_KEY);
+    return saved === 'dark' ? 'dark' : 'light';
   } catch {
     return 'light';
   }
@@ -17,10 +20,13 @@ export function ThemeProvider({ children }) {
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
-    try { localStorage.setItem('theme', theme); } catch { /* private mode */ }
   }, [theme]);
 
-  const toggle = useCallback(() => setTheme((t) => (t === 'dark' ? 'light' : 'dark')), []);
+  const toggle = useCallback(() => setTheme((t) => {
+    const next = t === 'dark' ? 'light' : 'dark';
+    try { localStorage.setItem(STORAGE_KEY, next); } catch { /* private mode */ }
+    return next;
+  }), []);
   const value = useMemo(() => ({ theme, toggle }), [theme, toggle]);
   return <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>;
 }

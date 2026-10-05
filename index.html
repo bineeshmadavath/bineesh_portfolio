@@ -9,10 +9,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;1,9..144,600&family=Manrope:wght@400;500;600&family=DM+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Caveat:wght@500;600&display=swap" rel="stylesheet" />
     <script>
-      // Apply saved theme before first paint to avoid a flash.
+      // Light by default; apply a saved dark choice before first paint to avoid a flash.
       try {
-        var t = localStorage.getItem('theme');
-        if (!t && window.matchMedia('(prefers-color-scheme: dark)').matches) t = 'dark';
+        var t = localStorage.getItem('theme-choice');
         if (t === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
       } catch (e) {}
     </script>

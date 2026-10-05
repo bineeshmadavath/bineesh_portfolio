@@ -5,6 +5,7 @@ import { useParallax } from '../hooks/useParallax';
 import { useDocumentTitle } from '../hooks/useDocumentTitle';
 import HeroBackground from '../components/layout/HeroBackground';
 import BackLink from '../components/layout/BackLink';
+import CaseLink from '../components/case/CaseLink';
 import ContactForm from '../components/contact/ContactForm';
 import { ArrowDiag, ArrowRight } from '../components/ui/Icons';
 import { ArrowList, Eyebrow, Label, LinkArrow, Section } from '../components/ui/Primitives';
@@ -18,8 +19,8 @@ export default function Contact() {
     ...profile.socials.filter((s) => !['GitHub', 'X'].includes(s.label)).map((s) => [s.label, s.handle, s.href]),
   ];
   const here = [
-    { label: "While you're here · 01", title: `${caseStudies[0].title} — AI inference review`, to: caseStudies[0].href || `/work/${caseStudies[0].slug}` },
-    { label: "While you're here · 02", title: `${caseStudies[1].title} — civic engagement platform`, to: caseStudies[1].href || `/work/${caseStudies[1].slug}` },
+    { label: "While you're here · 01", title: `${caseStudies[0].title} — AI inference review`, caseStudy: caseStudies[0] },
+    { label: "While you're here · 02", title: `${caseStudies[1].title} — civic engagement platform`, caseStudy: caseStudies[1] },
     { label: "While you're here · 03", title: 'Creative works — paintings and motion', to: '/creative' },
   ];
   return (
@@ -52,12 +53,18 @@ export default function Contact() {
       </Section>
       <Section alt size="sm">
         <div className="grid grid--3">
-          {here.map((h) => (
-            <Link key={h.title} to={h.to} className="card" style={{ gap: 10 }}>
-              <Label>{h.label}</Label><div className="card__title">{h.title}</div>
-              <span style={{ display: 'inline-flex', alignItems: 'center', gap: 8, fontSize: '.875rem', fontWeight: 600, color: 'var(--accent)' }}>Open <ArrowRight /></span>
-            </Link>
-          ))}
+          {here.map((h) => {
+            const locked = h.caseStudy?.locked;
+            const body = (
+              <>
+                <Label>{h.label}{locked && ' · Locked'}</Label><div className="card__title">{h.title}</div>
+                <span style={{ display: 'inline-flex', alignItems: 'center', gap: 8, fontSize: '.875rem', fontWeight: 600, color: 'var(--accent)' }}>{locked ? 'Request access' : 'Open'} <ArrowRight /></span>
+              </>
+            );
+            return h.caseStudy
+              ? <CaseLink key={h.title} caseStudy={h.caseStudy} className="card" style={{ gap: 10 }}>{body}</CaseLink>
+              : <Link key={h.title} to={h.to} className="card" style={{ gap: 10 }}>{body}</Link>;
+          })}
         </div>
       </Section>
     </>

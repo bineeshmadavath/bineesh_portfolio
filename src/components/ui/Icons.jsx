@@ -9,3 +9,4 @@ export const Print = (p) => (<svg {...base} {...p}><path d="M6 9V3h12v6" /><rect
 export const Play = (p) => (<svg width={24} height={24} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" {...p}><path d="M8 5v14l11-7z" /></svg>);
 export const Menu = (p) => (<svg {...base} width={20} height={20} {...p}><path d="M4 7h16" /><path d="M4 12h16" /><path d="M4 17h16" /></svg>);
 export const Close = (p) => (<svg {...base} width={20} height={20} {...p}><path d="M6 6l12 12" /><path d="M18 6 6 18" /></svg>);
+export const Lock = (p) => (<svg {...base} {...p}><rect x="4" y="11" width="16" height="10" rx="2" /><path d="M8 11V7a4 4 0 0 1 8 0v4" /></svg>);

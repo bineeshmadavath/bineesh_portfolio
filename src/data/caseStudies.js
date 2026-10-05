@@ -5,6 +5,8 @@ import { IMAGES } from '../lib/images';
 export const caseStudies = [
   {
     slug: 'smartops',
+    // Confidential client work: cards open a "locked" notice and the route shows it instead of the content.
+    locked: true,
     number: '01',
     title: 'Intelligent Document Processing Platform',
     category: 'Intelligent document processing',

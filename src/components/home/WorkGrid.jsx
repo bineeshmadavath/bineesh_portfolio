@@ -1,11 +1,11 @@
-import { Link } from 'react-router-dom';
+import CaseLink from '../case/CaseLink';
 import { caseStudies } from '../../data/caseStudies';
-import { ArrowDiag, ArrowRight } from '../ui/Icons';
+import { ArrowDiag, ArrowRight, Lock } from '../ui/Icons';
 import { Label, Section, Tags } from '../ui/Primitives';
 
 function FeaturedCard({ c }) {
   return (
-    <Link to={c.href || `/work/${c.slug}`} className="card card--dotted bento__feature" style={{ padding: 'clamp(24px, 3vw, 44px)', gap: 28 }}>
+    <CaseLink caseStudy={c} className="card card--dotted bento__feature" style={{ padding: 'clamp(24px, 3vw, 44px)', gap: 28 }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', gap: 12, flexWrap: 'wrap' }}>
         <Label tone="accent">{c.number} · Featured</Label>
         <Label>{c.category}</Label>
@@ -24,9 +24,9 @@ function FeaturedCard({ c }) {
       </div>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 16, flexWrap: 'wrap' }}>
         <Tags items={c.tags} />
-        <span className="link-arrow">Read the case study <ArrowRight /></span>
+        <span className="link-arrow">{c.locked ? 'Request access' : 'Read the case study'} <ArrowRight /></span>
       </div>
-    </Link>
+    </CaseLink>
   );
 }
 
@@ -47,10 +47,11 @@ function DeviceThumb({ thumb, prominent = false }) {
 
 function SmallCard({ c, prominent = false, muted = false }) {
   return (
-    <Link to={c.href || `/work/${c.slug}`} className="card" style={{ gap: 20 }}>
+    <CaseLink caseStudy={c} className="card" style={{ gap: 20 }}>
       {c.thumb ? <DeviceThumb thumb={c.thumb} prominent={prominent} /> : c.hero?.image ? (
-        <div style={{ overflow: 'hidden', borderRadius: '8px', border: '1px solid var(--border)', background: 'var(--alt)', aspectRatio: '4 / 3', opacity: muted ? 0.5 : 1 }}>
+        <div style={{ position: 'relative', overflow: 'hidden', borderRadius: '8px', border: '1px solid var(--border)', background: 'var(--alt)', aspectRatio: '4 / 3', opacity: muted ? 0.5 : 1 }}>
           <img src={c.hero.image} alt={c.hero.imageLabel || c.title} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+          {c.locked && <span className="locked-badge"><Lock width={12} height={12} aria-hidden="true" /> Locked</span>}
         </div>
       ) : null}
       <div style={{ display: 'flex', justifyContent: 'space-between' }}>
@@ -62,7 +63,7 @@ function SmallCard({ c, prominent = false, muted = false }) {
         <p className="body body--sm">{c.summary}</p>
       </div>
       <div style={{ display: 'flex', justifyContent: 'flex-end', color: 'var(--ink)' }}><ArrowDiag /></div>
-    </Link>
+    </CaseLink>
   );
 }
 
